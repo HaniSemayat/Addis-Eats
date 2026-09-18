@@ -1,33 +1,52 @@
-import { NavLink, Outlet } from "react-router-dom";
+import {
+    NavLink,
+    Outlet
+} from "react-router-dom";
+
 import CartBadge from "./cart/CartBadge";
 
 function Layout() {
     return (
         <>
-            <header>
-                <h1>Addis Eats</h1>
+            <header className="site-header">
+                <div className="header-inner">
+                    <div className="brand">
+                        <NavLink
+                            to="/"
+                            className="brand-link"
+                        >
+                            <span className="brand-icon">
+                                🍴
+                            </span>
 
-                <p>Delicious food from Addis Ababa</p>
+                            <span>
+                                <strong>
+                                    Addis Eats
+                                </strong>
 
-                <nav>
-                    <NavLink to="/">
-                        Home
-                    </NavLink>
+                                <small>
+                                    Delicious food from Addis Ababa
+                                </small>
+                            </span>
+                        </NavLink>
+                    </div>
 
-                    <NavLink to="/menu">
-                        Menu
-                    </NavLink>
+                    <nav className="main-nav">
+                        <NavLink to="/">
+                            Home
+                        </NavLink>
 
-                    <NavLink to="/cart">
-                        Cart
-                    </NavLink>
+                        <NavLink to="/menu">
+                            Menu
+                        </NavLink>
 
-                    <NavLink to="/checkout">
-                        Checkout
-                    </NavLink>
-                </nav>
+                        <NavLink to="/checkout">
+                            Checkout
+                        </NavLink>
+                    </nav>
 
-                <CartBadge />
+                    <CartBadge />
+                </div>
             </header>
 
             <main>

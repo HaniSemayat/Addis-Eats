@@ -72,6 +72,129 @@ font-weight: bold;
 font-size: 0.9rem;
 }
 
+.site-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid #eadfd2;
+    background: #fffdf9;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.brand {
+    flex-shrink: 0;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #4f4035;
+    text-decoration: none;
+}
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f3e7d8;
+    font-size: 1.25rem;
+}
+
+.brand-link strong {
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1.1;
+}
+
+.brand-link small {
+    display: block;
+    margin-top: 4px;
+    color: #6c5d51;
+    font-size: 0.75rem;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.main-nav a {
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: #4f4035;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.main-nav a:hover {
+    background: #f5eee7;
+}
+
+.main-nav a.active {
+    background: #f3e7d8;
+    color: #6f4325;
+}
+
+.cart-icon {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #4f4035;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cart-icon:hover {
+    background: #f5eee7;
+    transform: translateY(-1px);
+}
+
+.cart-icon svg {
+    width: 29px;
+    height: 29px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cart-count {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #8b5e3c;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
 main {
 width: min(1100px, 92%);
 margin: 40px auto;
@@ -405,6 +528,37 @@ nav {
 nav a {
     padding: 8px 11px;
     font-size: 0.95rem;
+}
+
+.site-header {
+    padding: 18px 16px;
+}
+
+.header-inner {
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.brand {
+    flex: 1;
+}
+
+.brand-link small {
+    display: none;
+}
+
+.main-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    border-top: 1px solid #eadfd2;
+    padding-top: 10px;
+}
+
+.main-nav a {
+    flex: 1;
+    text-align: center;
 }
 
 .menu {
