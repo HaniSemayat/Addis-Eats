@@ -2,7 +2,16 @@ import { useCartStore } from "./cartStore";
 
 function CartBadge() {
     const itemCount = useCartStore(
-        (state) => state.items.length
+        (state) =>
+            state.items.reduce(
+                function (total, item) {
+                    return (
+                        total +
+                        (item.quantity ?? 1)
+                    );
+                },
+                0
+            )
     );
 
     return (

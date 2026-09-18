@@ -6,19 +6,31 @@ function Cart() {
         (state) => state.items
     );
 
-    const total = useCartStore(
-        (state) =>
-            state.items.reduce(function (sum, dish) {
-                return sum + dish.price;
-            }, 0)
+    const increaseQuantity = useCartStore(
+        (state) => state.increaseQuantity
     );
 
-    const remove = useCartStore(
-        (state) => state.remove
+    const decreaseQuantity = useCartStore(
+        (state) => state.decreaseQuantity
+    );
+
+    const removeItem = useCartStore(
+        (state) => state.removeItem
     );
 
     const clear = useCartStore(
         (state) => state.clear
+    );
+
+    const total = items.reduce(
+        function (sum, item) {
+            return (
+                sum +
+                item.price *
+                    (item.quantity ?? 1)
+            );
+        },
+        0
     );
 
     return (
@@ -36,21 +48,74 @@ function Cart() {
             ) : (
                 <>
                     <ul>
-                        {items.map(function (dish, index) {
+                        {items.map(function (item) {
+                            const quantity =
+                                item.quantity ?? 1;
+
+                            const itemTotal =
+                                item.price *
+                                quantity;
+
                             return (
                                 <li
-                                    key={`${dish.id}-${index}`}
+                                    key={item.id}
                                 >
-                                    {dish.name} - {dish.price} ETB
+                                    <div>
+                                        <strong>
+                                            {item.name}
+                                        </strong>
 
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            remove(index)
-                                        }
-                                    >
-                                        Remove
-                                    </button>
+                                        <p>
+                                            {item.price}{" "}
+                                            ETB each
+                                        </p>
+
+                                        <p>
+                                            Subtotal:{" "}
+                                            {itemTotal}{" "}
+                                            ETB
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            onClick={function () {
+                                                decreaseQuantity(
+                                                    item.id
+                                                );
+                                            }}
+                                        >
+                                            −
+                                        </button>
+
+                                        <span>
+                                            {" "}
+                                            {quantity}{" "}
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            onClick={function () {
+                                                increaseQuantity(
+                                                    item.id
+                                                );
+                                            }}
+                                        >
+                                            +
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={function () {
+                                                removeItem(
+                                                    item.id
+                                                );
+                                            }}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
                                 </li>
                             );
                         })}
