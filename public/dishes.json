@@ -1,65 +1,738 @@
 [
     {
-        "id": 1,
-        "name": "Doro Wet",
+        "id": "Food-1",
+        "name": "Doro Wot",
+        "amharicName": "ዶሮ ወጥ",
+        "description": "Rich Ethiopian chicken stew slowly cooked with berbere, onions, garlic, and spices.",
+        "ingredients": [
+            "Chicken",
+            "Berbere",
+            "Onion",
+            "Garlic",
+            "Ginger",
+            "Spices"
+        ],
         "price": 650,
-        "category": "Ethiopian",
-        "spicy": true
+        "category": "Habeshan",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "30-40 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 2,
-        "name": "Tibs",
+        "id": "Food-2",
+        "name": "Beef Tibs",
+        "amharicName": "ጥብስ",
+        "description": "Tender beef sautéed with onions, peppers, rosemary, and Ethiopian spices.",
+        "ingredients": [
+            "Beef",
+            "Onion",
+            "Green Pepper",
+            "Rosemary",
+            "Garlic",
+            "Spices"
+        ],
         "price": 500,
-        "category": "Ethiopian",
-        "spicy": true
+        "category": "Habeshan",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "20-30 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 3,
-        "name": "Vegetable Pizza",
+        "id": "Food-3",
+        "name": "Shiro Wot",
+        "amharicName": "ሽሮ ወጥ",
+        "description": "Smooth and flavorful chickpea stew prepared with onions, garlic, and Ethiopian spices.",
+        "ingredients": [
+            "Shiro Powder",
+            "Onion",
+            "Garlic",
+            "Berbere",
+            "Oil",
+            "Spices"
+        ],
+        "price": 280,
+        "category": "Habeshan",
+        "fasting": true,
+        "spicy": true,
+        "prepTime": "20-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-4",
+        "name": "Misir Wot",
+        "amharicName": "ምስር ወጥ",
+        "description": "Spiced red lentil stew cooked with onions, garlic, and berbere.",
+        "ingredients": [
+            "Red Lentils",
+            "Onion",
+            "Garlic",
+            "Berbere",
+            "Oil",
+            "Spices"
+        ],
+        "price": 260,
+        "category": "Habeshan",
+        "fasting": true,
+        "spicy": true,
+        "prepTime": "20-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-5",
+        "name": "Vegetable Firfir",
+        "amharicName": "ፍርፍር",
+        "description": "Torn pieces of injera mixed with spicy berbere sauce and fresh vegetables.",
+        "ingredients": [
+            "Injera",
+            "Berbere",
+            "Tomato",
+            "Onion",
+            "Green Pepper",
+            "Oil"
+        ],
+        "price": 300,
+        "category": "Habeshan",
+        "fasting": true,
+        "spicy": true,
+        "prepTime": "15-20 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-6",
+        "name": "Beyaynetu",
+        "amharicName": "በያይነቱ",
+        "description": "A colorful combination of Ethiopian vegetable and lentil dishes served with injera.",
+        "ingredients": [
+            "Injera",
+            "Lentils",
+            "Vegetables",
+            "Shiro",
+            "Potatoes",
+            "Spices"
+        ],
+        "price": 420,
+        "category": "Habeshan",
+        "fasting": true,
+        "spicy": true,
+        "prepTime": "25-35 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-7",
+        "name": "Kitfo",
+        "amharicName": "ክትፎ",
+        "description": "Minced beef seasoned with Ethiopian mitmita and seasoned butter.",
+        "ingredients": [
+            "Minced Beef",
+            "Mitmita",
+            "Spiced Butter",
+            "Cheese",
+            "Greens"
+        ],
+        "price": 600,
+        "category": "Habeshan",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "15-20 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-8",
+        "name": "Margherita Pizza",
+        "description": "Classic pizza topped with tomato sauce, mozzarella, and fresh basil.",
+        "ingredients": [
+            "Pizza Dough",
+            "Tomato Sauce",
+            "Mozzarella",
+            "Basil"
+        ],
         "price": 450,
-        "category": "Pizza",
-        "spicy": false
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "20-30 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 4,
-        "name": "Beef Burger",
+        "id": "Food-9",
+        "name": "Beef Pizza",
+        "description": "Cheesy pizza topped with seasoned beef, onions, peppers, and tomato sauce.",
+        "ingredients": [
+            "Pizza Dough",
+            "Beef",
+            "Mozzarella",
+            "Onion",
+            "Green Pepper",
+            "Tomato Sauce"
+        ],
+        "price": 520,
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "25-35 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-10",
+        "name": "Chicken Pizza",
+        "description": "Classic pizza topped with seasoned chicken, mozzarella, peppers, and tomato sauce.",
+        "ingredients": [
+            "Pizza Dough",
+            "Chicken",
+            "Mozzarella",
+            "Green Pepper",
+            "Tomato Sauce"
+        ],
+        "price": 520,
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "25-35 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-11",
+        "name": "Vegetable Pizza",
+        "description": "Fresh vegetable pizza with peppers, onions, tomatoes, mushrooms, and mozzarella.",
+        "ingredients": [
+            "Pizza Dough",
+            "Mozzarella",
+            "Tomato",
+            "Onion",
+            "Green Pepper",
+            "Mushroom"
+        ],
+        "price": 450,
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "20-30 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-12",
+        "name": "Spicy Tuna Pizza",
+        "description": "Tuna pizza with mozzarella, tomato sauce, peppers, and a spicy finish.",
+        "ingredients": [
+            "Pizza Dough",
+            "Tuna",
+            "Mozzarella",
+            "Tomato Sauce",
+            "Chili",
+            "Green Pepper"
+        ],
+        "price": 550,
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "25-35 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-13",
+        "name": "Creamy Chicken Pasta",
+        "description": "Creamy pasta with tender chicken, garlic, herbs, and parmesan.",
+        "ingredients": [
+            "Pasta",
+            "Chicken",
+            "Cream",
+            "Garlic",
+            "Parmesan",
+            "Herbs"
+        ],
+        "price": 480,
+        "category": "Pizza & Pasta",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "20-30 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-14",
+        "name": "Arrabbiata Pasta",
+        "description": "Pasta tossed in a spicy tomato and garlic sauce with fresh herbs.",
+        "ingredients": [
+            "Pasta",
+            "Tomato",
+            "Garlic",
+            "Chili",
+            "Olive Oil",
+            "Basil"
+        ],
+        "price": 400,
+        "category": "Pizza & Pasta",
+        "fasting": true,
+        "spicy": true,
+        "prepTime": "15-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-15",
+        "name": "Classic Beef Burger",
+        "description": "Juicy beef patty with lettuce, tomato, onion, and house sauce.",
+        "ingredients": [
+            "Beef Patty",
+            "Burger Bun",
+            "Lettuce",
+            "Tomato",
+            "Onion",
+            "House Sauce"
+        ],
         "price": 380,
         "category": "Burgers",
-        "spicy": false
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "15-20 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 5,
+        "id": "Food-16",
         "name": "Cheese Burger",
+        "description": "Classic beef burger topped with melted cheese, lettuce, tomato, and sauce.",
+        "ingredients": [
+            "Beef Patty",
+            "Cheese",
+            "Burger Bun",
+            "Lettuce",
+            "Tomato",
+            "Sauce"
+        ],
         "price": 420,
         "category": "Burgers",
-        "spicy": false
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "15-20 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 6,
-        "name": "Coffee",
+        "id": "Food-17",
+        "name": "Chicken Burger",
+        "description": "Crispy chicken fillet served in a toasted bun with fresh vegetables.",
+        "ingredients": [
+            "Chicken",
+            "Burger Bun",
+            "Lettuce",
+            "Tomato",
+            "Mayonnaise"
+        ],
+        "price": 400,
+        "category": "Burgers",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "15-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1615297928064-24977384d0f0?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-18",
+        "name": "Spicy Chicken Burger",
+        "description": "Crispy spicy chicken burger with lettuce, peppers, and hot sauce.",
+        "ingredients": [
+            "Chicken",
+            "Burger Bun",
+            "Lettuce",
+            "Peppers",
+            "Hot Sauce"
+        ],
+        "price": 430,
+        "category": "Burgers",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "15-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1615297928064-24977384d0f0?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-19",
+        "name": "Mushroom Burger",
+        "description": "Beef burger topped with sautéed mushrooms, onions, lettuce, and sauce.",
+        "ingredients": [
+            "Beef Patty",
+            "Mushroom",
+            "Onion",
+            "Lettuce",
+            "Burger Bun",
+            "Sauce"
+        ],
+        "price": 450,
+        "category": "Burgers",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "15-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-20",
+        "name": "Chicken Curry",
+        "description": "Tender chicken cooked in a rich and aromatic curry sauce.",
+        "ingredients": [
+            "Chicken",
+            "Coconut Milk",
+            "Tomato",
+            "Onion",
+            "Garlic",
+            "Curry Spices"
+        ],
+        "price": 500,
+        "category": "International",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "30-40 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-21",
+        "name": "Beef Steak",
+        "description": "Tender grilled beef steak served with vegetables and a savory sauce.",
+        "ingredients": [
+            "Beef",
+            "Potato",
+            "Carrot",
+            "Green Beans",
+            "Butter",
+            "Herbs"
+        ],
+        "price": 750,
+        "category": "International",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "25-35 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-22",
+        "name": "Fish & Chips",
+        "description": "Crispy fried fish served with golden fries and a fresh side salad.",
+        "ingredients": [
+            "Fish",
+            "Potatoes",
+            "Flour",
+            "Lemon",
+            "Oil",
+            "Seasoning"
+        ],
+        "price": 550,
+        "category": "International",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "20-30 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-23",
+        "name": "Chicken Sandwich",
+        "description": "Grilled chicken sandwich with lettuce, tomato, cheese, and house sauce.",
+        "ingredients": [
+            "Chicken",
+            "Bread",
+            "Lettuce",
+            "Tomato",
+            "Cheese",
+            "Sauce"
+        ],
+        "price": 350,
+        "category": "International",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "10-15 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-24",
+        "name": "Creamy Mushroom Pasta",
+        "description": "Pasta served in a creamy mushroom and garlic sauce.",
+        "ingredients": [
+            "Pasta",
+            "Mushroom",
+            "Cream",
+            "Garlic",
+            "Parmesan",
+            "Herbs"
+        ],
+        "price": 430,
+        "category": "International",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "20-25 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-25",
+        "name": "Vegetable Stir Fry",
+        "description": "Fresh vegetables quickly stir-fried with garlic, ginger, and savory sauce.",
+        "ingredients": [
+            "Broccoli",
+            "Carrot",
+            "Bell Pepper",
+            "Onion",
+            "Garlic",
+            "Soy Sauce"
+        ],
+        "price": 350,
+        "category": "International",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "15-20 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-26",
+        "name": "Chechebsa",
+        "description": "Pieces of flatbread mixed with spiced butter and honey.",
+        "ingredients": [
+            "Flatbread",
+            "Spiced Butter",
+            "Honey",
+            "Berbere"
+        ],
+        "price": 300,
+        "category": "Breakfast",
+        "fasting": false,
+        "spicy": true,
+        "prepTime": "15-20 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-27",
+        "name": "Ful Medames",
+        "description": "Slow-cooked fava beans served with tomatoes, onions, herbs, and olive oil.",
+        "ingredients": [
+            "Fava Beans",
+            "Tomato",
+            "Onion",
+            "Parsley",
+            "Olive Oil",
+            "Lemon"
+        ],
+        "price": 280,
+        "category": "Breakfast",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "15-20 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-28",
+        "name": "Egg Sandwich",
+        "description": "Fluffy scrambled eggs served in toasted bread with fresh vegetables.",
+        "ingredients": [
+            "Eggs",
+            "Bread",
+            "Tomato",
+            "Lettuce",
+            "Butter"
+        ],
+        "price": 250,
+        "category": "Breakfast",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "10-15 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-29",
+        "name": "Pancake Stack",
+        "description": "Fluffy pancakes served with honey, fresh fruit, and butter.",
+        "ingredients": [
+            "Flour",
+            "Eggs",
+            "Milk",
+            "Butter",
+            "Honey",
+            "Fruit"
+        ],
+        "price": 320,
+        "category": "Breakfast",
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "15-20 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-30",
+        "name": "Avocado Toast",
+        "description": "Toasted bread topped with creamy avocado, herbs, and fresh vegetables.",
+        "ingredients": [
+            "Bread",
+            "Avocado",
+            "Tomato",
+            "Herbs",
+            "Lemon"
+        ],
+        "price": 300,
+        "category": "Breakfast",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "10-15 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-31",
+        "name": "Ethiopian Coffee",
+        "description": "Freshly brewed Ethiopian coffee with a rich aroma and deep flavor.",
+        "ingredients": [
+            "Ethiopian Coffee Beans",
+            "Water"
+        ],
         "price": 70,
         "category": "Drinks",
-        "spicy": false
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "10-15 min",
+        "isSpecial": true,
+        "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 7,
+        "id": "Food-32",
         "name": "Macchiato",
+        "description": "Smooth espresso topped with a small amount of steamed milk.",
+        "ingredients": [
+            "Espresso",
+            "Milk"
+        ],
         "price": 80,
         "category": "Drinks",
-        "spicy": false
+        "fasting": false,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 8,
+        "id": "Food-33",
         "name": "Fresh Orange Juice",
+        "description": "Freshly squeezed orange juice served chilled.",
+        "ingredients": [
+            "Fresh Oranges"
+        ],
         "price": 120,
         "category": "Drinks",
-        "spicy": false
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80"
     },
     {
-        "id": 9,
-        "name": "Fresh Avocado Juice",
+        "id": "Food-34",
+        "name": "Avocado Juice",
+        "description": "Creamy avocado drink blended with fresh fruit and a touch of sweetness.",
+        "ingredients": [
+            "Avocado",
+            "Water",
+            "Sugar",
+            "Lemon"
+        ],
         "price": 120,
         "category": "Drinks",
-        "spicy": false
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-35",
+        "name": "Mango Smoothie",
+        "description": "Refreshing mango smoothie blended until smooth and creamy.",
+        "ingredients": [
+            "Mango",
+            "Water",
+            "Ice",
+            "Sugar"
+        ],
+        "price": 150,
+        "category": "Drinks",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-36",
+        "name": "Strawberry Smoothie",
+        "description": "Fresh strawberry smoothie blended with fruit and ice.",
+        "ingredients": [
+            "Strawberries",
+            "Water",
+            "Ice",
+            "Sugar"
+        ],
+        "price": 160,
+        "category": "Drinks",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-37",
+        "name": "Lemon Mint Cooler",
+        "description": "Refreshing lemon and mint drink served chilled over ice.",
+        "ingredients": [
+            "Lemon",
+            "Mint",
+            "Water",
+            "Sugar",
+            "Ice"
+        ],
+        "price": 130,
+        "category": "Drinks",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "Food-38",
+        "name": "Ginger Lemon Tea",
+        "description": "Warm tea infused with fresh ginger and lemon.",
+        "ingredients": [
+            "Tea",
+            "Ginger",
+            "Lemon",
+            "Water",
+            "Honey"
+        ],
+        "price": 100,
+        "category": "Drinks",
+        "fasting": true,
+        "spicy": false,
+        "prepTime": "5-10 min",
+        "isSpecial": false,
+        "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80"
     }
 ]

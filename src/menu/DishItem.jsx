@@ -32,8 +32,12 @@ function DishItem({
         <Card>
             <Dish
                 name={dish.name}
+                amharicName={
+                    dish.amharicName
+                }
                 price={dish.price}
                 spicy={dish.spicy}
+                image={dish.image}
                 onAdd={handleAdd}
             />
 

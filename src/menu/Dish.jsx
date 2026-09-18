@@ -4,9 +4,11 @@ const TEST_MENU_ERROR = false;
 
 function Dish({
     name,
+    amharicName,
     price,
     currency = "ETB",
     spicy = false,
+    image,
     onAdd
 }) {
     if (
@@ -20,12 +22,23 @@ function Dish({
 
     return (
         <div className="dish">
+            <img
+                src={image}
+                alt={name}
+            />
+
             <h3>
                 {name}{" "}
                 {spicy && (
                     <span>• Spicy</span>
                 )}
             </h3>
+
+            {amharicName && (
+                <p className="dish-amharic">
+                    {amharicName}
+                </p>
+            )}
 
             <p>
                 {price} {currency}
@@ -43,9 +56,11 @@ function Dish({
 
 Dish.propTypes = {
     name: PropTypes.string.isRequired,
+    amharicName: PropTypes.string,
     price: PropTypes.number.isRequired,
     currency: PropTypes.string,
     spicy: PropTypes.bool,
+    image: PropTypes.string.isRequired,
     onAdd: PropTypes.func.isRequired
 };
 
