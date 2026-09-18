@@ -570,3 +570,21 @@ nav a {
     font-size: 1rem;
     font-weight: 500;
 }
+
+.menu-search {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 16px;
+    margin: 0 0 20px;
+    border: 1px solid #eadfd2;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.menu-search:focus {
+    outline: none;
+    border-color: #8b5e3c;
+    box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.12);
+}

@@ -1,12 +1,20 @@
-import { useMemo } from "react";
+import {
+    useMemo,
+    useState
+} from "react";
+
 import { useSearchParams } from "react-router-dom";
+
 import CategoryBar from "./CategoryBar";
 import DishList from "./DishList";
 import useFetch from "../hooks/useFetch";
 import { useCartStore } from "../cart/cartStore";
 
 function Menu() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] =
+        useSearchParams();
+
+    const [search, setSearch] = useState("");
 
     const category =
         searchParams.get("category") || "All";
@@ -18,7 +26,9 @@ function Menu() {
         (state) => state.addItem
     );
 
-    function handleCategoryChange(newCategory) {
+    function handleCategoryChange(
+        newCategory
+    ) {
         if (newCategory === "All") {
             setSearchParams({});
         } else {
@@ -30,21 +40,48 @@ function Menu() {
 
     const shownDishes = useMemo(
         function () {
-            const dishes = data ?? [];
+            let dishes = data ?? [];
 
-            if (category === "All") {
-                return dishes;
+            if (category !== "All") {
+                dishes = dishes.filter(
+                    function (dish) {
+                        return (
+                            dish.category ===
+                            category
+                        );
+                    }
+                );
             }
 
-            return dishes.filter(function (dish) {
-                return dish.category === category;
-            });
+            const searchText =
+                search.trim().toLowerCase();
+
+            if (searchText) {
+                dishes = dishes.filter(
+                    function (dish) {
+                        return (
+                            dish.name
+                                .toLowerCase()
+                                .includes(
+                                    searchText
+                                ) ||
+                            dish.description
+                                .toLowerCase()
+                                .includes(
+                                    searchText
+                                )
+                        );
+                    }
+                );
+            }
+
+            return dishes;
         },
-        [data, category]
+        [data, category, search]
     );
 
     function handleAdd(dish) {
-            addItem(dish);
+        addItem(dish);
     }
 
     if (loading) {
@@ -67,15 +104,35 @@ function Menu() {
         <div>
             <h2>Full Menu</h2>
 
-            <CategoryBar
-                selected={category}
-                onSelect={handleCategoryChange}
+            <input
+                className="menu-search"
+                type="search"
+                placeholder="Search dishes..."
+                value={search}
+                onChange={function (event) {
+                    setSearch(
+                        event.target.value
+                    );
+                }}
             />
 
-            <DishList
-                dishes={shownDishes}
-                onAdd={handleAdd}
+            <CategoryBar
+                selected={category}
+                onSelect={
+                    handleCategoryChange
+                }
             />
+
+            {shownDishes.length === 0 ? (
+                <p className="status">
+                    No dishes found.
+                </p>
+            ) : (
+                <DishList
+                    dishes={shownDishes}
+                    onAdd={handleAdd}
+                />
+            )}
         </div>
     );
 }
