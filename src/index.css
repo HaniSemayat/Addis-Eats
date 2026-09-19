@@ -761,3 +761,23 @@ nav a {
     padding-top: 16px;
     border-top: 1px solid #eadfd2;
 }
+
+
+.favorite-button {
+    border: 0;
+    background: transparent;
+    padding: 6px 8px;
+    margin: 4px 0 10px;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #6c5d51;
+}
+
+.favorite-button:hover {
+    transform: scale(1.08);
+}
+
+.favorite-button.active {
+    color: #8b5e3c;
+}

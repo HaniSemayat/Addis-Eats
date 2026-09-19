@@ -7,12 +7,25 @@ import { Link } from "react-router-dom";
 
 import Dish from "./Dish";
 import Card from "../ui/Card";
+import { useFavoriteStore } from "../favorites/favoriteStore";
 
 function DishItem({
     dish,
     onAdd,
     onQuickView
 }) {
+    const isFavorite = useFavoriteStore(
+        (state) =>
+            state.favoriteIds.includes(
+                dish.id
+            )
+    );
+
+    const toggleFavorite =
+        useFavoriteStore(
+            (state) => state.toggleFavorite
+        );
+
     const handleAdd = useCallback(
         function () {
             onAdd(dish);
@@ -28,6 +41,10 @@ function DishItem({
             [dish, onQuickView]
         );
 
+    function handleFavorite() {
+        toggleFavorite(dish.id);
+    }
+
     return (
         <Card>
             <Dish
@@ -40,6 +57,27 @@ function DishItem({
                 image={dish.image}
                 onAdd={handleAdd}
             />
+
+            <button
+                type="button"
+                className={
+                    isFavorite
+                        ? "favorite-button active"
+                        : "favorite-button"
+                }
+                onClick={
+                    handleFavorite
+                }
+                aria-label={
+                    isFavorite
+                        ? `Remove ${dish.name} from favorites`
+                        : `Add ${dish.name} to favorites`
+                }
+            >
+                {isFavorite
+                    ? "♥"
+                    : "♡"}
+            </button>
 
             <button
                 type="button"
