@@ -22,7 +22,7 @@ function Cart() {
         (state) => state.clear
     );
 
-    const total = items.reduce(
+    const subtotal = items.reduce(
         function (sum, item) {
             return (
                 sum +
@@ -32,6 +32,20 @@ function Cart() {
         },
         0
     );
+
+    const deliveryFee =
+        items.length === 0
+            ? 0
+            : subtotal >= 1000
+                ? 0
+                : 100;
+
+    const total = subtotal + deliveryFee;
+
+    const estimatedTime =
+        subtotal >= 1000
+            ? "25–35 min"
+            : "30–40 min";
 
     return (
         <section className="checkout">
@@ -121,9 +135,28 @@ function Cart() {
                         })}
                     </ul>
 
-                    <h3>
-                        Total: {total} ETB
-                    </h3>
+                    <div className="cart-summary">
+                        <p>
+                            Subtotal:{" "}
+                            {subtotal} ETB
+                        </p>
+
+                        <p>
+                            Delivery:{" "}
+                            {deliveryFee === 0
+                                ? "Free"
+                                : `${deliveryFee} ETB`}
+                        </p>
+
+                        <p>
+                            Estimated delivery:{" "}
+                            {estimatedTime}
+                        </p>
+
+                        <h3>
+                            Total: {total} ETB
+                        </h3>
+                    </div>
 
                     <button
                         type="button"

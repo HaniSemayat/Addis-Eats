@@ -742,3 +742,22 @@ nav a {
     border-color: #8b5e3c;
     box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.12);
 }
+
+
+.cart-summary {
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px solid #eadfd2;
+    border-radius: 12px;
+    background: #fffdf9;
+}
+
+.cart-summary p {
+    margin: 8px 0;
+}
+
+.cart-summary h3 {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eadfd2;
+}
