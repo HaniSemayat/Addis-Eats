@@ -11,10 +11,7 @@ function Dish({
     image,
     onAdd
 }) {
-    if (
-        TEST_MENU_ERROR &&
-        name === "Doro Wet"
-    ) {
+    if (TEST_MENU_ERROR && name === "Doro Wot") {
         throw new Error(
             "Deliberate menu error for testing ErrorBoundary."
         );
@@ -29,9 +26,7 @@ function Dish({
 
             <h3>
                 {name}{" "}
-                {spicy && (
-                    <span>• Spicy</span>
-                )}
+                {spicy && <span>• Spicy</span>}
             </h3>
 
             {amharicName && (
@@ -46,9 +41,10 @@ function Dish({
 
             <button
                 type="button"
+                className="add-to-cart-button"
                 onClick={onAdd}
             >
-                Add
+                Add to Cart
             </button>
         </div>
     );

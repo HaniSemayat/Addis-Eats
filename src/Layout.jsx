@@ -40,6 +40,14 @@ function Layout() {
                             Menu
                         </NavLink>
 
+                        <NavLink to="/favorites">
+                            Favorites
+                        </NavLink>
+
+                        <NavLink to="/orders">
+                            Orders
+                        </NavLink>
+
                         <NavLink to="/checkout">
                             Checkout
                         </NavLink>

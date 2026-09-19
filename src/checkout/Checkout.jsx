@@ -9,6 +9,8 @@ import validate from "./validate";
 
 import { placeOrder } from "../api/orders";
 
+import { useOrderStore } from "../orders/orderStore";
+
 function Checkout() {
     const navigate = useNavigate();
 
@@ -22,15 +24,30 @@ function Checkout() {
         (state) => state.clear
     );
 
-    const total = useCartStore(
-        (state) =>
-            state.items.reduce(
-                function (sum, dish) {
-                    return sum + dish.price;
-                },
-                0
-            )
+    const addOrder = useOrderStore(
+        (state) => state.addOrder
     );
+
+    const subtotal = items.reduce(
+        function (sum, item) {
+            return (
+                sum +
+                item.price *
+                    (item.quantity ?? 1)
+            );
+        },
+        0
+    );
+
+    const deliveryFee =
+        items.length === 0
+            ? 0
+            : subtotal >= 1000
+                ? 0
+                : 100;
+
+    const total =
+        subtotal + deliveryFee;
 
     const [form, setForm] = useState({
         name: "",
@@ -143,6 +160,21 @@ function Checkout() {
                     items: items,
                     total: total
                 });
+
+            addOrder({
+                items: items.map(function (item) {
+                    return {
+                        ...item,
+                        quantity:
+                            item.quantity ?? 1
+                    };
+                }),
+                subtotal: subtotal,
+                deliveryFee: deliveryFee,
+                total: total,
+                date:
+                    new Date().toLocaleString()
+            });
 
             clear();
 

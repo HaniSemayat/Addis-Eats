@@ -20,6 +20,8 @@ import NotFound from "./NotFound";
 import RequireAuth from "./auth/RequireAuth";
 import AuthProvider from "./auth/AuthContext";
 import ErrorBoundary from "./ErrorBoundary";
+import Favorites from "./favorites/Favorites";
+import Orders from "./orders/Orders";
 
 const Checkout = lazy(
     () => import("./checkout/Checkout")
@@ -204,6 +206,15 @@ function App() {
                         <Route
                             path="*"
                             element={<NotFound />}
+                        />
+                        <Route
+                            path="favorites"
+                            element={<Favorites />}
+                        />
+
+                        <Route
+                            path="orders"
+                            element={<Orders />}
                         />
                     </Route>
                 </Routes>

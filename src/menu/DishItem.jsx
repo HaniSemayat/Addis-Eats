@@ -47,50 +47,63 @@ function DishItem({
 
     return (
         <Card>
-            <Dish
-                name={dish.name}
-                amharicName={
-                    dish.amharicName
-                }
-                price={dish.price}
-                spicy={dish.spicy}
-                image={dish.image}
-                onAdd={handleAdd}
-            />
+            <div className="dish-card-content">
+                <div className="dish-image-area">
+                    <Dish
+                        name={dish.name}
+                        amharicName={
+                            dish.amharicName
+                        }
+                        price={dish.price}
+                        spicy={dish.spicy}
+                        image={dish.image}
+                        onAdd={handleAdd}
+                    />
 
-            <button
-                type="button"
-                className={
-                    isFavorite
-                        ? "favorite-button active"
-                        : "favorite-button"
-                }
-                onClick={
-                    handleFavorite
-                }
-                aria-label={
-                    isFavorite
-                        ? `Remove ${dish.name} from favorites`
-                        : `Add ${dish.name} to favorites`
-                }
-            >
-                {isFavorite
-                    ? "♥"
-                    : "♡"}
-            </button>
+                    <button
+                        type="button"
+                        className={
+                            isFavorite
+                                ? "favorite-button active"
+                                : "favorite-button"
+                        }
+                        onClick={
+                            handleFavorite
+                        }
+                        aria-label={
+                            isFavorite
+                                ? `Remove ${dish.name} from favorites`
+                                : `Add ${dish.name} to favorites`
+                        }
+                        title={
+                            isFavorite
+                                ? "Remove from favorites"
+                                : "Add to favorites"
+                        }
+                    >
+                        {isFavorite
+                            ? "♥"
+                            : "♡"}
+                    </button>
+                </div>
 
-            <button
-                type="button"
-                onClick={handleQuickView}
-            >
-                Quick View
-            </button>
+                <div className="dish-secondary-actions">
+                    <button
+                        type="button"
+                        className="quick-view-button"
+                        onClick={handleQuickView}
+                    >
+                        Quick View
+                    </button>
 
-            <Link
-                to={`/menu/${dish.id}`}
-            >
-                View Details
-            </Link>
+                    <Link
+                        className="details-link"
+                        to={`/menu/${dish.id}`}
+                    >
+                        Details →
+                    </Link>
+                </div>
+            </div>
         </Card>
     );
 }
