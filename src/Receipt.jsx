@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import formatCurrency from "./utils/formatCurrency";
 
 function Receipt() {
     const location = useLocation();
@@ -48,7 +49,7 @@ function Receipt() {
             )}
 
             <h3>
-                Total: {order.total} ETB
+                Total: {formatCurrency(order.total)}
             </h3>
 
             <h3>Items</h3>
@@ -61,7 +62,8 @@ function Receipt() {
                                 key={`${item.id}-${index}`}
                             >
                                 {item.name} —{" "}
-                                {item.price} ETB
+                                {formatCurrency(item.price)}{" "}
+                                each
                             </li>
                         );
                     }

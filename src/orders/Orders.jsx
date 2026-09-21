@@ -6,6 +6,8 @@ import {
 import { useOrderStore } from "./orderStore";
 import { useCartStore } from "../cart/cartStore";
 
+import formatCurrency from "../utils/formatCurrency";
+
 function Orders() {
     const orders = useOrderStore(
         (state) => state.orders
@@ -80,7 +82,9 @@ function Orders() {
                                     </div>
 
                                     <strong>
-                                        {order.total} ETB
+                                        {formatCurrency(
+                                            order.total
+                                        )}
                                     </strong>
                                 </div>
 

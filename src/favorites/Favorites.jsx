@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useFavoriteStore } from "./favoriteStore";
 import { useCartStore } from "../cart/cartStore";
 import useFetch from "../hooks/useFetch";
+import formatCurrency from "../utils/formatCurrency";
 
 function Favorites() {
     const {
@@ -49,6 +50,7 @@ function Favorites() {
             <div className="page-heading">
                 <div>
                     <h2>My Favorites</h2>
+
                     <p>
                         Dishes you saved for later.
                     </p>
@@ -92,7 +94,9 @@ function Favorites() {
                                     )}
 
                                     <p>
-                                        {dish.price} ETB
+                                        {formatCurrency(
+                                            dish.price
+                                        )}
                                     </p>
 
                                     <div className="favorite-card-actions">

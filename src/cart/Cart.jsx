@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "./cartStore";
+import formatCurrency from "../utils/formatCurrency";
 
 function Cart() {
     const items = useCartStore(
@@ -80,14 +81,17 @@ function Cart() {
                                         </strong>
 
                                         <p>
-                                            {item.price}{" "}
-                                            ETB each
+                                            {formatCurrency(
+                                                item.price
+                                            )}{" "}
+                                            each
                                         </p>
 
                                         <p>
                                             Subtotal:{" "}
-                                            {itemTotal}{" "}
-                                            ETB
+                                            {formatCurrency(
+                                                itemTotal
+                                            )}
                                         </p>
                                     </div>
 
@@ -138,14 +142,16 @@ function Cart() {
                     <div className="cart-summary">
                         <p>
                             Subtotal:{" "}
-                            {subtotal} ETB
+                            {formatCurrency(subtotal)}
                         </p>
 
                         <p>
                             Delivery:{" "}
                             {deliveryFee === 0
                                 ? "Free"
-                                : `${deliveryFee} ETB`}
+                                : formatCurrency(
+                                    deliveryFee
+                                )}
                         </p>
 
                         <p>
@@ -154,7 +160,8 @@ function Cart() {
                         </p>
 
                         <h3>
-                            Total: {total} ETB
+                            Total:{" "}
+                            {formatCurrency(total)}
                         </h3>
                     </div>
 

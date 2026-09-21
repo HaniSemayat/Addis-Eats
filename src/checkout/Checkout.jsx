@@ -11,6 +11,8 @@ import { placeOrder } from "../api/orders";
 
 import { useOrderStore } from "../orders/orderStore";
 
+import formatCurrency from "../utils/formatCurrency";
+
 function Checkout() {
     const navigate = useNavigate();
 
@@ -339,7 +341,9 @@ function Checkout() {
                 >
                     {submitting
                         ? "Placing order..."
-                        : `Place Order — ${total} ETB`}
+                        : `Place Order — ${formatCurrency(
+                            total
+                        )}`}
                 </button>
             </form>
         </section>

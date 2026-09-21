@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import formatCurrency from "../utils/formatCurrency";
 
 const TEST_MENU_ERROR = false;
 
@@ -6,7 +7,6 @@ function Dish({
     name,
     amharicName,
     price,
-    currency = "ETB",
     spicy = false,
     image,
     onAdd
@@ -36,7 +36,7 @@ function Dish({
             )}
 
             <p>
-                {price} {currency}
+                {formatCurrency(price)}
             </p>
 
             <button
@@ -54,7 +54,6 @@ Dish.propTypes = {
     name: PropTypes.string.isRequired,
     amharicName: PropTypes.string,
     price: PropTypes.number.isRequired,
-    currency: PropTypes.string,
     spicy: PropTypes.bool,
     image: PropTypes.string.isRequired,
     onAdd: PropTypes.func.isRequired

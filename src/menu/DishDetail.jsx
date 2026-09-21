@@ -8,6 +8,8 @@ import {
 import useFetch from "../hooks/useFetch";
 import { useCartStore } from "../cart/cartStore";
 
+import formatCurrency from "../utils/formatCurrency";
+
 function DishDetail() {
     const { id } = useParams();
 
@@ -73,7 +75,7 @@ function DishDetail() {
             <h2>{dish.name}</h2>
 
             <p>
-                Price: {dish.price} ETB
+                Price: {formatCurrency(dish.price)}
             </p>
 
             {dish.spicy && (
