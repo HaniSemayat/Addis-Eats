@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 
 import CartBadge from "./cart/CartBadge";
+import ThemeToggle from "./theme/ThemeToggle";
 
 function Layout() {
     return (
@@ -53,7 +54,11 @@ function Layout() {
                         </NavLink>
                     </nav>
 
-                    <CartBadge />
+                    <div className="header-actions">
+                        <ThemeToggle />
+
+                        <CartBadge />
+                    </div>
                 </div>
             </header>
 

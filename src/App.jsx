@@ -6,8 +6,7 @@ import {
 import {
     BrowserRouter,
     Routes,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 import Layout from "./Layout";
@@ -22,6 +21,7 @@ import AuthProvider from "./auth/AuthContext";
 import ErrorBoundary from "./ErrorBoundary";
 import Favorites from "./favorites/Favorites";
 import Orders from "./orders/Orders";
+import ThemeProvider from "./theme/ThemeContext";
 
 const Checkout = lazy(
     () => import("./checkout/Checkout")
@@ -33,193 +33,188 @@ const Receipt = lazy(
 
 function Skeleton() {
     return (
-        <section className="checkout">
-            <p className="status">
-                Loading page...
-            </p>
-        </section>
+        <p className="status">
+            Loading...
+        </p>
     );
 }
 
 function MenuUnavailable() {
     return (
-        <>
+        <section>
             <h2>Menu unavailable</h2>
 
             <p>
                 We could not load the menu right now.
                 Please try again.
             </p>
-        </>
+        </section>
     );
 }
 
 function CartUnavailable() {
     return (
-        <>
+        <section>
             <h2>Cart unavailable</h2>
 
             <p>
-                We could not load your cart right now.
-                Please try again.
+                Something went wrong while loading
+                your cart.
             </p>
-
-            <p>
-                <Link to="/menu">
-                    Browse Menu
-                </Link>
-            </p>
-        </>
+        </section>
     );
 }
 
 function CheckoutUnavailable() {
     return (
-        <>
+        <section>
             <h2>Checkout unavailable</h2>
 
             <p>
-                We could not load checkout.
-                Please try again.
+                Something went wrong while loading
+                checkout.
             </p>
-        </>
+        </section>
     );
 }
 
 function ReceiptUnavailable() {
     return (
-        <>
+        <section>
             <h2>Receipt unavailable</h2>
 
             <p>
-                We could not load your receipt.
-                Please try again.
+                Something went wrong while loading
+                your receipt.
             </p>
-
-            <p>
-                <Link to="/menu">
-                    Back to Menu
-                </Link>
-            </p>
-        </>
+        </section>
     );
 }
 
 function App() {
     return (
-        <AuthProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Layout />}
-                    >
+        <ThemeProvider>
+            <AuthProvider>
+                <BrowserRouter>
+                    <Routes>
                         <Route
-                            index
-                            element={<Home />}
-                        />
+                            path="/"
+                            element={<Layout />}
+                        >
+                            <Route
+                                index
+                                element={<Home />}
+                            />
 
-                        <Route
-                            path="menu"
-                            element={
-                                <ErrorBoundary
-                                    fallback={
-                                        <MenuUnavailable />
-                                    }
-                                >
-                                    <Menu />
-                                </ErrorBoundary>
-                            }
-                        />
-
-                        <Route
-                            path="menu/:id"
-                            element={
-                                <ErrorBoundary
-                                    fallback={
-                                        <MenuUnavailable />
-                                    }
-                                >
-                                    <DishDetail />
-                                </ErrorBoundary>
-                            }
-                        />
-
-                        <Route
-                            path="cart"
-                            element={
-                                <ErrorBoundary
-                                    fallback={
-                                        <CartUnavailable />
-                                    }
-                                >
-                                    <Cart />
-                                </ErrorBoundary>
-                            }
-                        />
-
-                        <Route
-                            path="checkout"
-                            element={
-                                <ErrorBoundary
-                                    fallback={
-                                        <CheckoutUnavailable />
-                                    }
-                                >
-                                    <Suspense
+                            <Route
+                                path="menu"
+                                element={
+                                    <ErrorBoundary
                                         fallback={
-                                            <Skeleton />
+                                            <MenuUnavailable />
                                         }
                                     >
-                                        <RequireAuth>
-                                            <Checkout />
-                                        </RequireAuth>
-                                    </Suspense>
-                                </ErrorBoundary>
-                            }
-                        />
+                                        <Menu />
+                                    </ErrorBoundary>
+                                }
+                            />
 
-                        <Route
-                            path="receipt"
-                            element={
-                                <ErrorBoundary
-                                    fallback={
-                                        <ReceiptUnavailable />
-                                    }
-                                >
-                                    <Suspense
+                            <Route
+                                path="menu/:id"
+                                element={
+                                    <ErrorBoundary
                                         fallback={
-                                            <Skeleton />
+                                            <MenuUnavailable />
                                         }
                                     >
-                                        <Receipt />
-                                    </Suspense>
-                                </ErrorBoundary>
-                            }
-                        />
+                                        <DishDetail />
+                                    </ErrorBoundary>
+                                }
+                            />
 
-                        <Route
-                            path="login"
-                            element={<Login />}
-                        />
+                            <Route
+                                path="cart"
+                                element={
+                                    <ErrorBoundary
+                                        fallback={
+                                            <CartUnavailable />
+                                        }
+                                    >
+                                        <Cart />
+                                    </ErrorBoundary>
+                                }
+                            />
 
-                        <Route
-                            path="*"
-                            element={<NotFound />}
-                        />
-                        <Route
-                            path="favorites"
-                            element={<Favorites />}
-                        />
+                            <Route
+                                path="checkout"
+                                element={
+                                    <ErrorBoundary
+                                        fallback={
+                                            <CheckoutUnavailable />
+                                        }
+                                    >
+                                        <Suspense
+                                            fallback={
+                                                <Skeleton />
+                                            }
+                                        >
+                                            <RequireAuth>
+                                                <Checkout />
+                                            </RequireAuth>
+                                        </Suspense>
+                                    </ErrorBoundary>
+                                }
+                            />
 
-                        <Route
-                            path="orders"
-                            element={<Orders />}
-                        />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </AuthProvider>
+                            <Route
+                                path="receipt"
+                                element={
+                                    <ErrorBoundary
+                                        fallback={
+                                            <ReceiptUnavailable />
+                                        }
+                                    >
+                                        <Suspense
+                                            fallback={
+                                                <Skeleton />
+                                            }
+                                        >
+                                            <Receipt />
+                                        </Suspense>
+                                    </ErrorBoundary>
+                                }
+                            />
+
+                            <Route
+                                path="login"
+                                element={<Login />}
+                            />
+
+                            <Route
+                                path="favorites"
+                                element={
+                                    <Favorites />
+                                }
+                            />
+
+                            <Route
+                                path="orders"
+                                element={
+                                    <Orders />
+                                }
+                            />
+
+                            <Route
+                                path="*"
+                                element={
+                                    <NotFound />
+                                }
+                            />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </AuthProvider>
+        </ThemeProvider>
     );
 }
 
