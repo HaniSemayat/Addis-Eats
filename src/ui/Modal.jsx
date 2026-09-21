@@ -1,5 +1,6 @@
 import {
     useEffect,
+    useId,
     useRef
 } from "react";
 
@@ -13,6 +14,8 @@ function Modal({
     const dialogRef = useRef(null);
     const previousFocusRef = useRef(null);
 
+    const titleId = useId();
+
     useEffect(() => {
         previousFocusRef.current =
             document.activeElement;
@@ -20,12 +23,15 @@ function Modal({
         const dialog =
             dialogRef.current;
 
-        if (dialog) {
-            dialog.focus();
+        if (!dialog) {
+            return undefined;
         }
+
+        dialog.focus();
 
         function handleKeyDown(event) {
             if (event.key === "Escape") {
+                event.preventDefault();
                 onClose();
                 return;
             }
@@ -52,15 +58,27 @@ function Modal({
                     focusableElements.length - 1
                 ];
 
+            const activeElement =
+                document.activeElement;
+
             if (
                 event.shiftKey &&
-                document.activeElement === first
+                (
+                    activeElement === first ||
+                    activeElement === dialog
+                )
             ) {
                 event.preventDefault();
                 last.focus();
-            } else if (
+                return;
+            }
+
+            if (
                 !event.shiftKey &&
-                document.activeElement === last
+                (
+                    activeElement === last ||
+                    activeElement === dialog
+                )
             ) {
                 event.preventDefault();
                 first.focus();
@@ -88,28 +106,32 @@ function Modal({
         };
     }, [onClose]);
 
+    function handleBackdropMouseDown(event) {
+        if (
+            event.target ===
+            event.currentTarget
+        ) {
+            onClose();
+        }
+    }
+
     return createPortal(
         <div
             className="modal-backdrop"
-            onMouseDown={(event) => {
-                if (
-                    event.target ===
-                    event.currentTarget
-                ) {
-                    onClose();
-                }
-            }}
+            onMouseDown={
+                handleBackdropMouseDown
+            }
         >
             <div
                 ref={dialogRef}
                 className="modal"
                 role="dialog"
                 aria-modal="true"
-                aria-labelledby="modal-title"
+                aria-labelledby={titleId}
                 tabIndex="-1"
             >
                 <div className="modal-header">
-                    <h2 id="modal-title">
+                    <h2 id={titleId}>
                         {title}
                     </h2>
 

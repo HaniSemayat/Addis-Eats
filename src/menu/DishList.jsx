@@ -5,6 +5,7 @@ import {
 
 import DishItem from "./DishItem";
 import Modal from "../ui/Modal";
+import formatCurrency from "../utils/formatCurrency";
 
 function DishList({ dishes, onAdd }) {
     const [selectedDish, setSelectedDish] =
@@ -19,6 +20,11 @@ function DishList({ dishes, onAdd }) {
         useCallback(function () {
             setSelectedDish(null);
         }, []);
+
+    function handleQuickViewAdd() {
+        onAdd(selectedDish);
+        handleClose();
+    }
 
     if (dishes.length === 0) {
         return (
@@ -52,7 +58,9 @@ function DishList({ dishes, onAdd }) {
                 >
                     <p>
                         Price:{" "}
-                        {selectedDish.price} ETB
+                        {formatCurrency(
+                            selectedDish.price
+                        )}
                     </p>
 
                     {selectedDish.spicy && (
@@ -66,10 +74,9 @@ function DishList({ dishes, onAdd }) {
 
                     <button
                         type="button"
-                        onClick={() => {
-                            onAdd(selectedDish);
-                            handleClose();
-                        }}
+                        onClick={
+                            handleQuickViewAdd
+                        }
                     >
                         Add to Cart
                     </button>
