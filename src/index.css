@@ -1542,6 +1542,145 @@ footer p {
     margin-top: 4px;
 }
 
+.admin-form-panel {
+    margin-bottom: 24px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.admin-form-panel h2 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.admin-form-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--heading);
+    font-weight: 600;
+}
+
+.admin-form-grid input,
+.admin-form-grid textarea,
+.admin-form-grid select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+
+.admin-form-grid textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.admin-form-grid input:focus,
+.admin-form-grid textarea:focus,
+.admin-form-grid select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--focus);
+}
+
+.admin-form-wide {
+    grid-column: 1 / -1;
+}
+
+.admin-form-grid small {
+    color: var(--text-muted);
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+
+.admin-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.admin-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.admin-checkboxes input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.admin-form-actions button:last-child {
+    background: var(--surface-alt);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+}
+
+.admin-form-actions button:last-child:hover {
+    background: var(--surface);
+    box-shadow: none;
+}
+
+/* Dish Availability */
+
+.dish-unavailable {
+    opacity: 0.75;
+}
+
+.dish-unavailable .add-to-cart-button,
+.add-to-cart-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.unavailable-message {
+    margin: 6px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Admin Availability */
+
+.admin-dish-card.unavailable {
+    opacity: 0.72;
+}
+
+.admin-availability {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.admin-availability.available {
+    color: #287a45;
+}
+
+.admin-availability.unavailable-status {
+    color: #9b3d2b;
+}
 
 /* Admin Responsive */
 
@@ -1635,4 +1774,21 @@ footer p {
     .admin-panel {
         padding: 18px;
     }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-wide {
+        grid-column: auto;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-form-actions button {
+        width: 100%;
+    }
 }
+

@@ -1,4 +1,5 @@
 import {
+    useEffect,
     useMemo,
     useState
 } from "react";
@@ -7,24 +8,96 @@ import { useSearchParams } from "react-router-dom";
 
 import CategoryBar from "./CategoryBar";
 import DishList from "./DishList";
-import useFetch from "../hooks/useFetch";
 import { useCartStore } from "../cart/cartStore";
+
+const STORAGE_KEY =
+    "addis-eats-admin-dishes";
 
 function Menu() {
     const [searchParams, setSearchParams] =
         useSearchParams();
 
-    const [search, setSearch] = useState("");
+    const [search, setSearch] =
+        useState("");
+
+    const [dishes, setDishes] =
+        useState([]);
+
+    const [loading, setLoading] =
+        useState(true);
+
+    const [error, setError] =
+        useState("");
 
     const category =
         searchParams.get("category") || "All";
 
-    const { data, loading, error } =
-        useFetch("/dishes.json");
-
     const addItem = useCartStore(
         (state) => state.addItem
     );
+
+    useEffect(function () {
+        async function loadDishes() {
+            try {
+                const saved =
+                    localStorage.getItem(
+                        STORAGE_KEY
+                    );
+
+                if (saved) {
+                    const parsed =
+                        JSON.parse(saved);
+
+                    setDishes(parsed);
+                    setLoading(false);
+                    return;
+                }
+
+                const response =
+                    await fetch(
+                        "/dishes.json"
+                    );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Could not load menu."
+                    );
+                }
+
+                const data =
+                    await response.json();
+
+                const normalized =
+                    data.map(
+                        function (dish) {
+                            return {
+                                ...dish,
+                                available:
+                                    dish.available ??
+                                    true
+                            };
+                        }
+                    );
+
+                setDishes(normalized);
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(
+                        normalized
+                    )
+                );
+            } catch {
+                setError(
+                    "Could not load the menu."
+                );
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadDishes();
+    }, []);
 
     function handleCategoryChange(
         newCategory
@@ -40,47 +113,54 @@ function Menu() {
 
     const shownDishes = useMemo(
         function () {
-            let dishes = data ?? [];
+            let filteredDishes =
+                dishes;
 
             if (category !== "All") {
-                dishes = dishes.filter(
-                    function (dish) {
-                        return (
-                            dish.category ===
-                            category
-                        );
-                    }
-                );
+                filteredDishes =
+                    filteredDishes.filter(
+                        function (dish) {
+                            return (
+                                dish.category ===
+                                category
+                            );
+                        }
+                    );
             }
 
             const searchText =
                 search.trim().toLowerCase();
 
             if (searchText) {
-                dishes = dishes.filter(
-                    function (dish) {
-                        return (
-                            dish.name
-                                .toLowerCase()
-                                .includes(
-                                    searchText
-                                ) ||
-                            dish.description
-                                .toLowerCase()
-                                .includes(
-                                    searchText
-                                )
-                        );
-                    }
-                );
+                filteredDishes =
+                    filteredDishes.filter(
+                        function (dish) {
+                            return (
+                                dish.name
+                                    .toLowerCase()
+                                    .includes(
+                                        searchText
+                                    ) ||
+                                dish.description
+                                    .toLowerCase()
+                                    .includes(
+                                        searchText
+                                    )
+                            );
+                        }
+                    );
             }
 
-            return dishes;
+            return filteredDishes;
         },
-        [data, category, search]
+        [dishes, category, search]
     );
 
     function handleAdd(dish) {
+        if (dish.available === false) {
+            return;
+        }
+
         addItem(dish);
     }
 

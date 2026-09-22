@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react";
 
 import formatCurrency from "../utils/formatCurrency";
+import DishForm from "./DishForm";
 
-const STORAGE_KEY = "addis-eats-admin-dishes";
+const STORAGE_KEY =
+    "addis-eats-admin-dishes";
 
 function DishManager() {
-    const [dishes, setDishes] = useState([]);
-    const [search, setSearch] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [dishes, setDishes] =
+        useState([]);
+
+    const [search, setSearch] =
+        useState("");
+
+    const [loading, setLoading] =
+        useState(true);
+
+    const [error, setError] =
+        useState("");
+
+    const [showForm, setShowForm] =
+        useState(false);
+
+    const [editingDish, setEditingDish] =
+        useState(null);
 
     useEffect(function () {
         async function loadDishes() {
@@ -19,15 +34,38 @@ function DishManager() {
                     );
 
                 if (saved) {
-                    setDishes(
-                        JSON.parse(saved)
+                    const parsed =
+                        JSON.parse(saved);
+
+                    const normalized =
+                        parsed.map(
+                            function (dish) {
+                                return {
+                                    ...dish,
+                                    available:
+                                        dish.available ??
+                                        true
+                                };
+                            }
+                        );
+
+                    setDishes(normalized);
+
+                    localStorage.setItem(
+                        STORAGE_KEY,
+                        JSON.stringify(
+                            normalized
+                        )
                     );
+
                     setLoading(false);
                     return;
                 }
 
                 const response =
-                    await fetch("/dishes.json");
+                    await fetch(
+                        "/dishes.json"
+                    );
 
                 if (!response.ok) {
                     throw new Error(
@@ -38,13 +76,27 @@ function DishManager() {
                 const data =
                     await response.json();
 
-                setDishes(data);
+                const normalized =
+                    data.map(
+                        function (dish) {
+                            return {
+                                ...dish,
+                                available:
+                                    dish.available ??
+                                    true
+                            };
+                        }
+                    );
+
+                setDishes(normalized);
 
                 localStorage.setItem(
                     STORAGE_KEY,
-                    JSON.stringify(data)
+                    JSON.stringify(
+                        normalized
+                    )
                 );
-            } catch (err) {
+            } catch {
                 setError(
                     "Could not load the menu."
                 );
@@ -55,6 +107,90 @@ function DishManager() {
 
         loadDishes();
     }, []);
+
+    function saveDishes(updatedDishes) {
+        setDishes(updatedDishes);
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(
+                updatedDishes
+            )
+        );
+    }
+
+    function handleAdd() {
+        setEditingDish(null);
+        setShowForm(true);
+    }
+
+    function handleEdit(dish) {
+        setEditingDish(dish);
+        setShowForm(true);
+    }
+
+    function handleSave(formDish) {
+        if (editingDish) {
+            const updated =
+                dishes.map(
+                    function (dish) {
+                        if (
+                            dish.id ===
+                            editingDish.id
+                        ) {
+                            return {
+                                ...formDish,
+                                id: dish.id
+                            };
+                        }
+
+                        return dish;
+                    }
+                );
+
+            saveDishes(updated);
+        } else {
+            const newDish = {
+                ...formDish,
+                id: `Food-${Date.now()}`
+            };
+
+            saveDishes([
+                newDish,
+                ...dishes
+            ]);
+        }
+
+        setShowForm(false);
+        setEditingDish(null);
+    }
+
+    function handleCancel() {
+        setShowForm(false);
+        setEditingDish(null);
+    }
+
+    function handleAvailability(id) {
+        const updated =
+            dishes.map(
+                function (dish) {
+                    if (dish.id === id) {
+                        return {
+                            ...dish,
+                            available:
+                                dish.available ===
+                                false
+                                    ? true
+                                    : false
+                        };
+                    }
+
+                    return dish;
+                }
+            );
+
+        saveDishes(updated);
+    }
 
     function handleDelete(id) {
         const dish = dishes.find(
@@ -67,49 +203,47 @@ function DishManager() {
             return;
         }
 
-        const confirmed = window.confirm(
-            `Delete "${dish.name}"?`
-        );
+        const confirmed =
+            window.confirm(
+                `Delete "${dish.name}"?`
+            );
 
         if (!confirmed) {
             return;
         }
 
-        setDishes(function (current) {
-            const updated =
-                current.filter(
-                    function (item) {
-                        return item.id !== id;
-                    }
-                );
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(updated)
+        const updated =
+            dishes.filter(
+                function (item) {
+                    return item.id !== id;
+                }
             );
 
-            return updated;
-        });
+        saveDishes(updated);
     }
 
     const shownDishes =
-        dishes.filter(function (dish) {
-            const text =
-                search.trim().toLowerCase();
+        dishes.filter(
+            function (dish) {
+                const text =
+                    search
+                        .trim()
+                        .toLowerCase();
 
-            if (!text) {
-                return true;
+                if (!text) {
+                    return true;
+                }
+
+                return (
+                    dish.name
+                        .toLowerCase()
+                        .includes(text) ||
+                    dish.category
+                        .toLowerCase()
+                        .includes(text)
+                );
             }
-
-            return (
-                dish.name
-                    .toLowerCase()
-                    .includes(text) ||
-                dish.category
-                    .toLowerCase()
-                    .includes(text)
-            );
-        });
+        );
 
     if (loading) {
         return (
@@ -129,22 +263,58 @@ function DishManager() {
 
     return (
         <section className="admin-menu">
+
             <div className="admin-page-heading">
                 <div>
-                    <h1>Menu Manager</h1>
+                    <h1>
+                        Menu Manager
+                    </h1>
+
                     <p>
                         Manage dishes in the
                         Addis Eats menu.
                     </p>
                 </div>
+
+                <button
+                    type="button"
+                    onClick={handleAdd}
+                >
+                    + Add Dish
+                </button>
             </div>
+
+            {showForm && (
+                <div className="admin-form-panel">
+
+                    <h2>
+                        {editingDish
+                            ? "Edit Dish"
+                            : "Add New Dish"}
+                    </h2>
+
+                    <DishForm
+                        key={
+                            editingDish
+                                ? editingDish.id
+                                : "new"
+                        }
+                        dish={editingDish}
+                        onSave={handleSave}
+                        onCancel={handleCancel}
+                    />
+
+                </div>
+            )}
 
             <div className="admin-menu-toolbar">
                 <input
                     type="search"
                     placeholder="Search dishes..."
                     value={search}
-                    onChange={function (event) {
+                    onChange={function (
+                        event
+                    ) {
                         setSearch(
                             event.target.value
                         );
@@ -152,31 +322,49 @@ function DishManager() {
                 />
             </div>
 
-            {shownDishes.length === 0 ? (
+            {shownDishes.length ===
+            0 ? (
                 <p className="status">
                     No dishes found.
                 </p>
             ) : (
                 <div className="admin-dish-list">
+
                     {shownDishes.map(
                         function (dish) {
+                            const isAvailable =
+                                dish.available !==
+                                false;
+
                             return (
                                 <article
-                                    className="admin-dish-card"
+                                    className={
+                                        isAvailable
+                                            ? "admin-dish-card"
+                                            : "admin-dish-card unavailable"
+                                    }
                                     key={dish.id}
                                 >
                                     <img
-                                        src={dish.image}
-                                        alt={dish.name}
+                                        src={
+                                            dish.image
+                                        }
+                                        alt={
+                                            dish.name
+                                        }
                                     />
 
                                     <div className="admin-dish-info">
                                         <h2>
-                                            {dish.name}
+                                            {
+                                                dish.name
+                                            }
                                         </h2>
 
                                         <p>
-                                            {dish.category}
+                                            {
+                                                dish.category
+                                            }
                                         </p>
 
                                         <strong>
@@ -184,14 +372,40 @@ function DishManager() {
                                                 dish.price
                                             )}
                                         </strong>
+
+                                        <span
+                                            className={
+                                                isAvailable
+                                                    ? "admin-availability available"
+                                                    : "admin-availability unavailable-status"
+                                            }
+                                        >
+                                            {isAvailable
+                                                ? "Available"
+                                                : "Unavailable"}
+                                        </span>
                                     </div>
 
                                     <div className="admin-dish-actions">
+
                                         <button
                                             type="button"
                                             onClick={function () {
-                                                window.alert(
-                                                    "Edit form coming next."
+                                                handleAvailability(
+                                                    dish.id
+                                                );
+                                            }}
+                                        >
+                                            {isAvailable
+                                                ? "Disable"
+                                                : "Enable"}
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={function () {
+                                                handleEdit(
+                                                    dish
                                                 );
                                             }}
                                         >
@@ -208,13 +422,16 @@ function DishManager() {
                                         >
                                             Delete
                                         </button>
+
                                     </div>
                                 </article>
                             );
                         }
                     )}
+
                 </div>
             )}
+
         </section>
     );
 }

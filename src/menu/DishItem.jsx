@@ -28,6 +28,10 @@ function DishItem({
 
     const handleAdd = useCallback(
         function () {
+            if (dish.available === false) {
+                return;
+            }
+
             onAdd(dish);
         },
         [dish, onAdd]
@@ -45,9 +49,18 @@ function DishItem({
         toggleFavorite(dish.id);
     }
 
+    const isAvailable =
+        dish.available !== false;
+
     return (
         <Card>
-            <div className="dish-card-content">
+            <div
+                className={
+                    isAvailable
+                        ? "dish-card-content"
+                        : "dish-card-content dish-unavailable"
+                }
+            >
                 <div className="dish-image-area">
                     <Dish
                         name={dish.name}
@@ -58,6 +71,7 @@ function DishItem({
                         spicy={dish.spicy}
                         image={dish.image}
                         onAdd={handleAdd}
+                        available={isAvailable}
                     />
 
                     <button

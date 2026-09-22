@@ -9,7 +9,8 @@ function Dish({
     price,
     spicy = false,
     image,
-    onAdd
+    onAdd,
+    available = true
 }) {
     if (TEST_MENU_ERROR && name === "Doro Wot") {
         throw new Error(
@@ -39,12 +40,21 @@ function Dish({
                 {formatCurrency(price)}
             </p>
 
+            {!available && (
+                <p className="unavailable-message">
+                    Currently unavailable
+                </p>
+            )}
+
             <button
                 type="button"
                 className="add-to-cart-button"
                 onClick={onAdd}
+                disabled={!available}
             >
-                Add to Cart
+                {available
+                    ? "Add to Cart"
+                    : "Unavailable"}
             </button>
         </div>
     );
@@ -56,7 +66,8 @@ Dish.propTypes = {
     price: PropTypes.number.isRequired,
     spicy: PropTypes.bool,
     image: PropTypes.string.isRequired,
-    onAdd: PropTypes.func.isRequired
+    onAdd: PropTypes.func.isRequired,
+    available: PropTypes.bool
 };
 
 export default Dish;

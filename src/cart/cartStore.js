@@ -8,6 +8,12 @@ export const useCartStore = create(
 
             addItem: (dish) =>
                 set((state) => {
+                    if (
+                        dish.available === false
+                    ) {
+                        return state;
+                    }
+
                     const existingItem =
                         state.items.find(
                             function (item) {
@@ -29,8 +35,7 @@ export const useCartStore = create(
                                         return {
                                             ...item,
                                             quantity:
-                                                (item.quantity ??
-                                                    1) + 1
+                                                (item.quantity ?? 1) + 1
                                         };
                                     }
 
@@ -59,8 +64,7 @@ export const useCartStore = create(
                                 return {
                                     ...item,
                                     quantity:
-                                        (item.quantity ??
-                                            1) + 1
+                                        (item.quantity ?? 1) + 1
                                 };
                             }
 
@@ -77,8 +81,7 @@ export const useCartStore = create(
                                 return {
                                     ...item,
                                     quantity:
-                                        (item.quantity ??
-                                            1) - 1
+                                        (item.quantity ?? 1) - 1
                                 };
                             }
 

@@ -22,6 +22,13 @@ function DishList({ dishes, onAdd }) {
         }, []);
 
     function handleQuickViewAdd() {
+        if (
+            !selectedDish ||
+            selectedDish.available === false
+        ) {
+            return;
+        }
+
         onAdd(selectedDish);
         handleClose();
     }
@@ -38,15 +45,32 @@ function DishList({ dishes, onAdd }) {
         <>
             <section className="menu">
                 {dishes.map(function (dish) {
+                    const isAvailable =
+                        dish.available !== false;
+
                     return (
-                        <DishItem
-                            key={dish.id}
-                            dish={dish}
-                            onAdd={onAdd}
-                            onQuickView={
-                                handleQuickView
+                        <div
+                            className={
+                                isAvailable
+                                    ? ""
+                                    : "dish-unavailable"
                             }
-                        />
+                            key={dish.id}
+                        >
+                            <DishItem
+                                dish={dish}
+                                onAdd={onAdd}
+                                onQuickView={
+                                    handleQuickView
+                                }
+                            />
+
+                            {!isAvailable && (
+                                <p className="unavailable-message">
+                                    Currently unavailable
+                                </p>
+                            )}
+                        </div>
                     );
                 })}
             </section>
@@ -67,19 +91,28 @@ function DishList({ dishes, onAdd }) {
                         <p>• Spicy</p>
                     )}
 
-                    <p>
-                        Enjoy this dish from
-                        Addis Eats.
-                    </p>
+                    {selectedDish.available === false ? (
+                        <p className="unavailable-message">
+                            This dish is currently
+                            unavailable.
+                        </p>
+                    ) : (
+                        <>
+                            <p>
+                                Enjoy this dish from
+                                Addis Eats.
+                            </p>
 
-                    <button
-                        type="button"
-                        onClick={
-                            handleQuickViewAdd
-                        }
-                    >
-                        Add to Cart
-                    </button>
+                            <button
+                                type="button"
+                                onClick={
+                                    handleQuickViewAdd
+                                }
+                            >
+                                Add to Cart
+                            </button>
+                        </>
+                    )}
                 </Modal>
             )}
         </>
