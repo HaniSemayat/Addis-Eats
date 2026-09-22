@@ -86,7 +86,9 @@ function OrderManager() {
             <section className="admin-orders">
                 <div className="admin-page-heading">
                     <div>
-                        <h1>Order Manager</h1>
+                        <h1>
+                            Order Manager
+                        </h1>
 
                         <p>
                             Manage customer orders
@@ -97,7 +99,8 @@ function OrderManager() {
 
                 <div className="empty-state">
                     <p>
-                        No orders have been placed yet.
+                        No orders have been
+                        placed yet.
                     </p>
                 </div>
             </section>
@@ -108,7 +111,9 @@ function OrderManager() {
         <section className="admin-orders">
             <div className="admin-page-heading">
                 <div>
-                    <h1>Order Manager</h1>
+                    <h1>
+                        Order Manager
+                    </h1>
 
                     <p>
                         Manage customer orders
@@ -305,6 +310,44 @@ function OrderManager() {
                                         "pending"
                                 )}
                             </strong>
+                        </div>
+
+                        <div className="admin-order-customer">
+                            <h3>
+                                Customer
+                            </h3>
+
+                            <p>
+                                <strong>
+                                    Name:
+                                </strong>{" "}
+                                {selectedOrder.name ||
+                                    "—"}
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Phone:
+                                </strong>{" "}
+                                {selectedOrder.phone ||
+                                    "—"}
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Area:
+                                </strong>{" "}
+                                {selectedOrder.area ||
+                                    "—"}
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Notes:
+                                </strong>{" "}
+                                {selectedOrder.notes ||
+                                    "—"}
+                            </p>
                         </div>
 
                         <h3>

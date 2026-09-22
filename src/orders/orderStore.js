@@ -12,7 +12,9 @@ export const useOrderStore = create(
                         {
                             ...order,
                             id: `ORDER-${Date.now()}`,
-                            status: "pending"
+                            status:
+                                order.status ??
+                                "pending"
                         },
                         ...state.orders
                     ]
@@ -43,7 +45,9 @@ export const useOrderStore = create(
                 set((state) => ({
                     orders: state.orders.filter(
                         function (order) {
-                            return order.id !== id;
+                            return (
+                                order.id !== id
+                            );
                         }
                     )
                 }))

@@ -76,7 +76,10 @@ function Checkout() {
         Object.keys(errors).length > 0;
 
     function showError(field) {
-        return touched[field] && errors[field];
+        return (
+            touched[field] &&
+            errors[field]
+        );
     }
 
     function handleChange(event) {
@@ -164,6 +167,10 @@ function Checkout() {
                 });
 
             addOrder({
+                name: form.name,
+                phone: form.phone,
+                area: form.area,
+                notes: form.notes,
                 items: items.map(function (item) {
                     return {
                         ...item,
@@ -175,7 +182,8 @@ function Checkout() {
                 deliveryFee: deliveryFee,
                 total: total,
                 date:
-                    new Date().toLocaleString()
+                    new Date().toLocaleString(),
+                status: "pending"
             });
 
             clear();

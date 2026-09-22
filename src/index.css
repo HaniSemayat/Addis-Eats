@@ -1919,6 +1919,21 @@ footer p {
     align-self: flex-end;
 }
 
+.admin-order-customer {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.admin-order-customer h3 {
+    margin-top: 0;
+}
+
+.admin-order-customer p {
+    margin: 8px 0;
+}
+
 /* Admin Responsive */
 
 @media (max-width: 800px) {
