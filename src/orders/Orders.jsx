@@ -54,7 +54,9 @@ function Orders() {
         <section className="orders-page">
             <div className="page-heading">
                 <div>
-                    <h2>Order History</h2>
+                    <h2>
+                        Order History
+                    </h2>
 
                     <p>
                         Your previous Addis Eats orders.
@@ -69,7 +71,8 @@ function Orders() {
             {orders.length === 0 ? (
                 <div className="empty-state">
                     <p>
-                        You haven't placed an order yet.
+                        You haven't placed
+                        an order yet.
                     </p>
 
                     <Link to="/menu">
@@ -78,7 +81,9 @@ function Orders() {
                 </div>
             ) : (
                 <div className="orders-list">
-                    {orders.map(function (order) {
+                    {orders.map(function (
+                        order
+                    ) {
                         const status =
                             order.status ||
                             "pending";
@@ -116,15 +121,32 @@ function Orders() {
                                     </div>
                                 </div>
 
+                                {order.estimatedDeliveryTime && (
+                                    <p className="delivery-estimate">
+                                        Estimated delivery:{" "}
+                                        <strong>
+                                            {
+                                                order.estimatedDeliveryTime
+                                            }
+                                        </strong>
+                                    </p>
+                                )}
+
                                 <ul className="order-items">
                                     {order.items.map(
-                                        function (item) {
+                                        function (
+                                            item
+                                        ) {
                                             return (
                                                 <li
-                                                    key={item.id}
+                                                    key={
+                                                        item.id
+                                                    }
                                                 >
                                                     <span>
-                                                        {item.name}
+                                                        {
+                                                            item.name
+                                                        }
                                                     </span>
 
                                                     <span>
@@ -141,11 +163,13 @@ function Orders() {
                                 <div className="order-card-footer">
                                     <span>
                                         {
-                                            order.items
+                                            order
+                                                .items
                                                 .length
                                         }{" "}
                                         item
-                                        {order.items
+                                        {order
+                                            .items
                                             .length !==
                                         1
                                             ? "s"

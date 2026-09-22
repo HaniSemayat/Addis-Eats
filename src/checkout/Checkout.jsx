@@ -12,6 +12,7 @@ import { placeOrder } from "../api/orders";
 import { useOrderStore } from "../orders/orderStore";
 
 import formatCurrency from "../utils/formatCurrency";
+import estimateDeliveryTime from "../utils/estimateDeliveryTime";
 
 function Checkout() {
     const navigate = useNavigate();
@@ -50,6 +51,9 @@ function Checkout() {
 
     const total =
         subtotal + deliveryFee;
+
+    const estimatedDeliveryTime =
+        estimateDeliveryTime(items);
 
     const [form, setForm] = useState({
         name: "",
@@ -181,6 +185,8 @@ function Checkout() {
                 subtotal: subtotal,
                 deliveryFee: deliveryFee,
                 total: total,
+                estimatedDeliveryTime:
+                    estimatedDeliveryTime,
                 date:
                     new Date().toLocaleString(),
                 status: "pending"
@@ -190,7 +196,11 @@ function Checkout() {
 
             navigate("/receipt", {
                 state: {
-                    order: result.order
+                    order: {
+                        ...result.order,
+                        estimatedDeliveryTime:
+                            estimatedDeliveryTime
+                    }
                 }
             });
         } catch (error) {
@@ -272,6 +282,13 @@ function Checkout() {
     return (
         <section className="checkout">
             <h2>Checkout</h2>
+
+            <p className="delivery-estimate">
+                Estimated delivery:{" "}
+                <strong>
+                    {estimatedDeliveryTime}
+                </strong>
+            </p>
 
             {submitError && (
                 <p

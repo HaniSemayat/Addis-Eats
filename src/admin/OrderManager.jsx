@@ -312,6 +312,17 @@ function OrderManager() {
                             </strong>
                         </div>
 
+                        {selectedOrder.estimatedDeliveryTime && (
+                            <p className="delivery-estimate">
+                                <strong>
+                                    Estimated Delivery:
+                                </strong>{" "}
+                                {
+                                    selectedOrder.estimatedDeliveryTime
+                                }
+                            </p>
+                        )}
+
                         <div className="admin-order-customer">
                             <h3>
                                 Customer
@@ -356,10 +367,14 @@ function OrderManager() {
 
                         <ul className="admin-order-items">
                             {selectedOrder.items.map(
-                                function (item) {
+                                function (
+                                    item
+                                ) {
                                     return (
                                         <li
-                                            key={item.id}
+                                            key={
+                                                item.id
+                                            }
                                         >
                                             <span>
                                                 {

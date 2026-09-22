@@ -1934,6 +1934,20 @@ footer p {
     margin: 8px 0;
 }
 
+/* Estimated Delivery */
+
+.delivery-estimate {
+    margin: 12px 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+}
+
+.delivery-estimate strong {
+    font-weight: 700;
+}
+
 /* Admin Responsive */
 
 @media (max-width: 800px) {
