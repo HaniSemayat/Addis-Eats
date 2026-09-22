@@ -1948,6 +1948,32 @@ footer p {
     font-weight: 700;
 }
 
+
+/* Keyboard Accessibility */
+
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 16px;
+    z-index: 9999;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    border: 2px solid var(--text);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: 16px;
+}
+
+:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
 /* Admin Responsive */
 
 @media (max-width: 800px) {

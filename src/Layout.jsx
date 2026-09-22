@@ -9,12 +9,20 @@ import ThemeToggle from "./theme/ThemeToggle";
 function Layout() {
     return (
         <>
+            <a
+                className="skip-link"
+                href="#main-content"
+            >
+                Skip to main content
+            </a>
+
             <header className="site-header">
                 <div className="header-inner">
                     <div className="brand">
                         <NavLink
                             to="/"
                             className="brand-link"
+                            aria-label="Addis Eats home"
                         >
                             <span className="brand-icon">
                                 🍴
@@ -32,7 +40,10 @@ function Layout() {
                         </NavLink>
                     </div>
 
-                    <nav className="main-nav">
+                    <nav
+                        className="main-nav"
+                        aria-label="Main navigation"
+                    >
                         <NavLink to="/">
                             Home
                         </NavLink>
@@ -62,7 +73,7 @@ function Layout() {
                 </div>
             </header>
 
-            <main>
+            <main id="main-content">
                 <Outlet />
             </main>
 

@@ -27,7 +27,16 @@ function Modal({
             return undefined;
         }
 
-        dialog.focus();
+        const focusableElements =
+            dialog.querySelectorAll(
+                'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+            );
+
+        if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+        } else {
+            dialog.focus();
+        }
 
         function handleKeyDown(event) {
             if (event.key === "Escape") {
@@ -40,33 +49,23 @@ function Modal({
                 return;
             }
 
-            const focusableElements =
+            const elements =
                 dialog.querySelectorAll(
                     'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
                 );
 
-            if (focusableElements.length === 0) {
+            if (elements.length === 0) {
                 event.preventDefault();
                 return;
             }
 
-            const first =
-                focusableElements[0];
-
+            const first = elements[0];
             const last =
-                focusableElements[
-                    focusableElements.length - 1
-                ];
-
-            const activeElement =
-                document.activeElement;
+                elements[elements.length - 1];
 
             if (
                 event.shiftKey &&
-                (
-                    activeElement === first ||
-                    activeElement === dialog
-                )
+                document.activeElement === first
             ) {
                 event.preventDefault();
                 last.focus();
@@ -75,10 +74,7 @@ function Modal({
 
             if (
                 !event.shiftKey &&
-                (
-                    activeElement === last ||
-                    activeElement === dialog
-                )
+                document.activeElement === last
             ) {
                 event.preventDefault();
                 first.focus();

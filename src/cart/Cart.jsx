@@ -103,11 +103,14 @@ function Cart() {
                                                     item.id
                                                 );
                                             }}
+                                            aria-label={`Decrease ${item.name} quantity`}
                                         >
                                             −
                                         </button>
 
-                                        <span>
+                                        <span
+                                            aria-label={`${quantity} ${item.name} in cart`}
+                                        >
                                             {" "}
                                             {quantity}{" "}
                                         </span>
@@ -119,6 +122,7 @@ function Cart() {
                                                     item.id
                                                 );
                                             }}
+                                            aria-label={`Increase ${item.name} quantity`}
                                         >
                                             +
                                         </button>
@@ -130,6 +134,7 @@ function Cart() {
                                                     item.id
                                                 );
                                             }}
+                                            aria-label={`Remove ${item.name} from cart`}
                                         >
                                             Remove
                                         </button>

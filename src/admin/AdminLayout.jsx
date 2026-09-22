@@ -26,7 +26,10 @@ function AdminLayout() {
                     <p>Admin Panel</p>
                 </div>
 
-                <nav className="admin-nav">
+                <nav
+                    className="admin-nav"
+                    aria-label="Admin navigation"
+                >
                     <NavLink to="/admin">
                         Dashboard
                     </NavLink>
