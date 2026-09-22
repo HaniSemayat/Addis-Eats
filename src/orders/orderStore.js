@@ -11,10 +11,41 @@ export const useOrderStore = create(
                     orders: [
                         {
                             ...order,
-                            id: `ORDER-${Date.now()}`
+                            id: `ORDER-${Date.now()}`,
+                            status: "pending"
                         },
                         ...state.orders
                     ]
+                })),
+
+            updateOrderStatus: (
+                id,
+                status
+            ) =>
+                set((state) => ({
+                    orders: state.orders.map(
+                        function (order) {
+                            if (
+                                order.id === id
+                            ) {
+                                return {
+                                    ...order,
+                                    status: status
+                                };
+                            }
+
+                            return order;
+                        }
+                    )
+                })),
+
+            deleteOrder: (id) =>
+                set((state) => ({
+                    orders: state.orders.filter(
+                        function (order) {
+                            return order.id !== id;
+                        }
+                    )
                 }))
         }),
         {

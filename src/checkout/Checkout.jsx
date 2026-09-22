@@ -343,7 +343,7 @@ function Checkout() {
                         ? "Placing order..."
                         : `Place Order — ${formatCurrency(
                             total
-                        )}`}
+                          )}`}
                 </button>
             </form>
         </section>

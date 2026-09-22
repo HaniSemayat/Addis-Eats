@@ -36,6 +36,20 @@ function Orders() {
         navigate("/cart");
     }
 
+    function getStatusLabel(status) {
+        const labels = {
+            pending: "Pending",
+            preparing: "Preparing",
+            delivering: "Delivering",
+            delivered: "Delivered"
+        };
+
+        return (
+            labels[status] ||
+            "Pending"
+        );
+    }
+
     return (
         <section className="orders-page">
             <div className="page-heading">
@@ -65,6 +79,10 @@ function Orders() {
             ) : (
                 <div className="orders-list">
                     {orders.map(function (order) {
+                        const status =
+                            order.status ||
+                            "pending";
+
                         return (
                             <article
                                 className="order-card"
@@ -81,11 +99,21 @@ function Orders() {
                                         </p>
                                     </div>
 
-                                    <strong>
-                                        {formatCurrency(
-                                            order.total
-                                        )}
-                                    </strong>
+                                    <div className="order-header-right">
+                                        <strong>
+                                            {formatCurrency(
+                                                order.total
+                                            )}
+                                        </strong>
+
+                                        <span
+                                            className={`order-status order-status-${status}`}
+                                        >
+                                            {getStatusLabel(
+                                                status
+                                            )}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <ul className="order-items">

@@ -28,6 +28,7 @@ import AdminLayout from "./admin/AdminLayout";
 import RequireAdmin from "./admin/RequireAdmin";
 import Dashboard from "./admin/Dashboard";
 import DishManager from "./admin/DishManager";
+import OrderManager from "./admin/OrderManager";
 
 const Checkout = lazy(
     () => import("./checkout/Checkout")
@@ -258,12 +259,7 @@ function App() {
 
                             <Route
                                 path="orders"
-                                element={
-                                    <p className="status">
-                                        Order Manager
-                                        coming soon...
-                                    </p>
-                                }
+                                element={<OrderManager />}
                             />
                         </Route>
 
