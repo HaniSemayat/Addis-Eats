@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import useAdminAuth from "./useAdminAuth";
+import ThemeToggle from "../theme/ThemeToggle";
 
 function AdminLayout() {
     const { admin, logout } =
@@ -24,6 +25,10 @@ function AdminLayout() {
                     <h2>Addis Eats</h2>
 
                     <p>Admin Panel</p>
+                </div>
+
+                <div className="admin-theme-toggle">
+                    <ThemeToggle />
                 </div>
 
                 <nav

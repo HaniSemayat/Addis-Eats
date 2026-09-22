@@ -2387,3 +2387,17 @@ footer p {
         border-bottom: 1px solid var(--border);
     }
 }
+
+
+.admin-theme-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 16px;
+}
+
+.admin-theme-toggle .theme-toggle {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+}
