@@ -27,6 +27,7 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
 import RequireAdmin from "./admin/RequireAdmin";
 import Dashboard from "./admin/Dashboard";
+import DishManager from "./admin/DishManager";
 
 const Checkout = lazy(
     () => import("./checkout/Checkout")
@@ -252,12 +253,7 @@ function App() {
 
                             <Route
                                 path="menu"
-                                element={
-                                    <p className="status">
-                                        Menu Manager
-                                        coming soon...
-                                    </p>
-                                }
+                                element={<DishManager />}
                             />
 
                             <Route
