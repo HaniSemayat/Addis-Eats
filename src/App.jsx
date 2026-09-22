@@ -23,6 +23,10 @@ import Favorites from "./favorites/Favorites";
 import Orders from "./orders/Orders";
 import ThemeProvider from "./theme/ThemeContext";
 
+import AdminLogin from "./admin/AdminLogin";
+import AdminLayout from "./admin/AdminLayout";
+import RequireAdmin from "./admin/RequireAdmin";
+
 const Checkout = lazy(
     () => import("./checkout/Checkout")
 );
@@ -97,6 +101,7 @@ function App() {
             <AuthProvider>
                 <BrowserRouter>
                     <Routes>
+                        {/* Customer Routes */}
                         <Route
                             path="/"
                             element={<Layout />}
@@ -211,6 +216,54 @@ function App() {
                                 }
                             />
                         </Route>
+
+                        {/* Admin Login */}
+                        <Route
+                            path="/admin/login"
+                            element={
+                                <AdminLogin />
+                            }
+                        />
+
+                        {/* Protected Admin Routes */}
+                        <Route
+                            path="/admin"
+                            element={
+                                <RequireAdmin>
+                                    <AdminLayout />
+                                </RequireAdmin>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <p className="status">
+                                        Admin Dashboard
+                                        coming soon...
+                                    </p>
+                                }
+                            />
+
+                            <Route
+                                path="menu"
+                                element={
+                                    <p className="status">
+                                        Menu Manager
+                                        coming soon...
+                                    </p>
+                                }
+                            />
+
+                            <Route
+                                path="orders"
+                                element={
+                                    <p className="status">
+                                        Order Manager
+                                        coming soon...
+                                    </p>
+                                }
+                            />
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
@@ -219,3 +272,4 @@ function App() {
 }
 
 export default App;
+
