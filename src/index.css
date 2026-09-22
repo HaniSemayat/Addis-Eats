@@ -2115,3 +2115,275 @@ footer p {
     }
 }
 
+
+/* Changes I did on the UI at last, especially the dark mode for the Admin page */
+
+/* Admin Theme Polish */
+
+.admin-layout {
+    background: var(--bg);
+}
+
+.admin-sidebar {
+    background: var(--primary);
+    border-right: 1px solid var(--border);
+}
+
+.admin-brand {
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+}
+
+.admin-brand h2 {
+    color: #ffffff;
+}
+
+.admin-brand p {
+    color: #eadbc9;
+}
+
+.admin-nav a {
+    color: #f7eee4;
+}
+
+.admin-nav a:hover {
+    background: var(--primary-hover);
+    color: #ffffff;
+}
+
+.admin-nav a.active {
+    background: var(--gold);
+    color: #3b2417;
+}
+
+.admin-sidebar-footer {
+    border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.admin-sidebar-footer p {
+    color: #eadbc9;
+}
+
+.admin-sidebar-footer strong {
+    color: #ffffff;
+}
+
+.admin-sidebar-footer button {
+    background: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.admin-sidebar-footer button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* Admin controls */
+
+.admin-main button,
+.admin-main select,
+.admin-main input,
+.admin-main textarea {
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-main button {
+    background: var(--primary);
+    color: white;
+}
+
+.admin-main button:hover:not(:disabled) {
+    background: var(--primary-hover);
+    color: white;
+}
+
+.admin-main input,
+.admin-main textarea,
+.admin-main select {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border-strong);
+}
+
+.admin-main input::placeholder,
+.admin-main textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* Admin cards */
+
+.admin-stat-card,
+.admin-panel,
+.admin-dish-card,
+.admin-order-card,
+.admin-form-panel,
+.admin-login-card {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.admin-stat-card strong,
+.admin-panel h2,
+.admin-dish-info h2,
+.admin-order-main h2,
+.admin-page-heading h1 {
+    color: var(--heading);
+}
+
+/* Admin menu actions */
+
+.admin-dish-actions button {
+    background: var(--accent);
+    color: white;
+}
+
+.admin-dish-actions button:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+.admin-dish-actions button:last-child {
+    background: #7a3d25;
+    color: white;
+}
+
+.admin-dish-actions button:last-child:hover {
+    background: #963f22;
+}
+
+/* Admin order controls */
+
+.admin-order-actions select {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border-strong);
+}
+
+.admin-order-actions button {
+    background: var(--accent);
+    color: white;
+}
+
+.admin-order-actions button:hover:not(:disabled) {
+    background: var(--accent-hover);
+    color: white;
+}
+
+.admin-order-actions button:last-child {
+    background: #7a3d25;
+    color: white;
+}
+
+.admin-order-actions button:last-child:hover {
+    background: #963f22;
+}
+
+/* Admin form */
+
+.admin-form-grid label,
+.admin-checkboxes label,
+.admin-login-card label {
+    color: var(--heading);
+}
+
+.admin-form-actions button:last-child {
+    background: var(--surface-alt);
+    color: var(--text);
+    border-color: var(--border-strong);
+}
+
+.admin-form-actions button:last-child:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+
+/* Admin modal */
+
+.admin-order-modal {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.admin-order-modal-header h2,
+.admin-order-modal h3 {
+    color: var(--heading);
+}
+
+.admin-order-detail-status {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+}
+
+/* Better dark-mode contrast */
+
+:root[data-theme="dark"] .admin-sidebar {
+    background: #211b17;
+}
+
+:root[data-theme="dark"] .admin-nav a {
+    color: #f2ebe3;
+}
+
+:root[data-theme="dark"] .admin-nav a:hover {
+    background: #332820;
+}
+
+:root[data-theme="dark"] .admin-nav a.active {
+    background: var(--gold);
+    color: #2b2118;
+}
+
+:root[data-theme="dark"] .admin-sidebar-footer button {
+    background: #211b17;
+    color: #f2ebe3;
+    border-color: #5a493b;
+}
+
+:root[data-theme="dark"] .admin-sidebar-footer button:hover {
+    background: #332820;
+}
+
+:root[data-theme="dark"] .admin-main button {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+:root[data-theme="dark"] .admin-main button:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+:root[data-theme="dark"] .admin-form-actions button:last-child {
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+:root[data-theme="dark"] .admin-order-actions select {
+    background: var(--surface);
+    color: var(--text);
+}
+
+:root[data-theme="dark"] .admin-dish-actions button:last-child,
+:root[data-theme="dark"] .admin-order-actions button:last-child {
+    background: #8f4a32;
+    color: #ffffff;
+}
+
+:root[data-theme="dark"] .admin-dish-actions button:last-child:hover,
+:root[data-theme="dark"] .admin-order-actions button:last-child:hover {
+    background: #ad5b3d;
+}
+
+/* Admin responsive theme polish */
+
+@media (max-width: 800px) {
+    .admin-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+}
