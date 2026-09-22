@@ -13,7 +13,7 @@
             "Spices"
         ],
         "price": 650,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": false,
         "spicy": true,
         "prepTime": "30-40 min",
@@ -34,7 +34,7 @@
             "Spices"
         ],
         "price": 500,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": false,
         "spicy": true,
         "prepTime": "20-30 min",
@@ -55,7 +55,7 @@
             "Spices"
         ],
         "price": 280,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": true,
         "spicy": true,
         "prepTime": "20-25 min",
@@ -76,7 +76,7 @@
             "Spices"
         ],
         "price": 260,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": true,
         "spicy": true,
         "prepTime": "20-25 min",
@@ -97,7 +97,7 @@
             "Oil"
         ],
         "price": 300,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": true,
         "spicy": true,
         "prepTime": "15-20 min",
@@ -118,7 +118,7 @@
             "Spices"
         ],
         "price": 420,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": true,
         "spicy": true,
         "prepTime": "25-35 min",
@@ -138,7 +138,7 @@
             "Greens"
         ],
         "price": 600,
-        "category": "Habeshan",
+        "category": "Ethiopian",
         "fasting": false,
         "spicy": true,
         "prepTime": "15-20 min",
@@ -156,7 +156,7 @@
             "Basil"
         ],
         "price": 450,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": false,
         "prepTime": "20-30 min",
@@ -176,7 +176,7 @@
             "Tomato Sauce"
         ],
         "price": 520,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": false,
         "prepTime": "25-35 min",
@@ -195,7 +195,7 @@
             "Tomato Sauce"
         ],
         "price": 520,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": false,
         "prepTime": "25-35 min",
@@ -215,7 +215,7 @@
             "Mushroom"
         ],
         "price": 450,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": false,
         "prepTime": "20-30 min",
@@ -235,7 +235,7 @@
             "Green Pepper"
         ],
         "price": 550,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": true,
         "prepTime": "25-35 min",
@@ -255,7 +255,7 @@
             "Herbs"
         ],
         "price": 480,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": false,
         "spicy": false,
         "prepTime": "20-30 min",
@@ -275,7 +275,7 @@
             "Basil"
         ],
         "price": 400,
-        "category": "Pizza & Pasta",
+        "category": "Pizza",
         "fasting": true,
         "spicy": true,
         "prepTime": "15-25 min",
@@ -503,6 +503,7 @@
     {
         "id": "Food-26",
         "name": "Chechebsa",
+        "amharicName": "ጨጨብሳ",
         "description": "Pieces of flatbread mixed with spiced butter and honey.",
         "ingredients": [
             "Flatbread",

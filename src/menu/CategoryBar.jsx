@@ -4,10 +4,10 @@ function CategoryBar({
 }) {
     const categories = [
         "All",
-        "Habeshan",
-        "International",
-        "Pizza & Pasta",
+        "Ethiopian",
+        "Pizza",
         "Burgers",
+        "International",
         "Breakfast",
         "Drinks"
     ];
@@ -21,18 +21,13 @@ function CategoryBar({
                             key={category}
                             type="button"
                             className={
-                                selected ===
-                                category
+                                selected === category
                                     ? "category-button active"
                                     : "category-button"
                             }
-                            onClick={
-                                function () {
-                                    onSelect(
-                                        category
-                                    );
-                                }
-                            }
+                            onClick={function () {
+                                onSelect(category);
+                            }}
                         >
                             {category}
                         </button>
