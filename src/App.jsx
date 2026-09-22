@@ -26,6 +26,7 @@ import ThemeProvider from "./theme/ThemeContext";
 import AdminLogin from "./admin/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
 import RequireAdmin from "./admin/RequireAdmin";
+import Dashboard from "./admin/Dashboard";
 
 const Checkout = lazy(
     () => import("./checkout/Checkout")
@@ -101,7 +102,9 @@ function App() {
             <AuthProvider>
                 <BrowserRouter>
                     <Routes>
+
                         {/* Customer Routes */}
+
                         <Route
                             path="/"
                             element={<Layout />}
@@ -192,7 +195,9 @@ function App() {
 
                             <Route
                                 path="login"
-                                element={<Login />}
+                                element={
+                                    <Login />
+                                }
                             />
 
                             <Route
@@ -217,7 +222,9 @@ function App() {
                             />
                         </Route>
 
+
                         {/* Admin Login */}
+
                         <Route
                             path="/admin/login"
                             element={
@@ -225,7 +232,9 @@ function App() {
                             }
                         />
 
+
                         {/* Protected Admin Routes */}
+
                         <Route
                             path="/admin"
                             element={
@@ -237,10 +246,7 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <p className="status">
-                                        Admin Dashboard
-                                        coming soon...
-                                    </p>
+                                    <Dashboard />
                                 }
                             />
 
@@ -264,6 +270,7 @@ function App() {
                                 }
                             />
                         </Route>
+
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
@@ -272,4 +279,3 @@ function App() {
 }
 
 export default App;
-
