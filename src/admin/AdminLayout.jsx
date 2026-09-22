@@ -56,6 +56,13 @@ function AdminLayout() {
                         </strong>
                     </p>
 
+                    <NavLink
+                        to="/"
+                        className="admin-customer-link"
+                    >
+                        ← Customer Page
+                    </NavLink>
+
                     <button
                         type="button"
                         onClick={
