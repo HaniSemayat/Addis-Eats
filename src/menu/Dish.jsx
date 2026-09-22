@@ -1,4 +1,10 @@
+import {
+    useEffect,
+    useState
+} from "react";
+
 import PropTypes from "prop-types";
+
 import formatCurrency from "../utils/formatCurrency";
 
 const TEST_MENU_ERROR = false;
@@ -12,10 +18,44 @@ function Dish({
     onAdd,
     available = true
 }) {
-    if (TEST_MENU_ERROR && name === "Doro Wot") {
+    const [added, setAdded] =
+        useState(false);
+
+    useEffect(
+        function () {
+            if (!added) {
+                return;
+            }
+
+            const timer =
+                setTimeout(function () {
+                    setAdded(false);
+                }, 1500);
+
+            return function () {
+                clearTimeout(timer);
+            };
+        },
+        [added]
+    );
+
+    if (
+        TEST_MENU_ERROR &&
+        name === "Doro Wot"
+    ) {
         throw new Error(
             "Deliberate menu error for testing ErrorBoundary."
         );
+    }
+
+    function handleAdd() {
+        if (!available) {
+            return;
+        }
+
+        onAdd();
+
+        setAdded(true);
     }
 
     return (
@@ -27,7 +67,9 @@ function Dish({
 
             <h3>
                 {name}{" "}
-                {spicy && <span>• Spicy</span>}
+                {spicy && (
+                    <span>• Spicy</span>
+                )}
             </h3>
 
             {amharicName && (
@@ -48,13 +90,19 @@ function Dish({
 
             <button
                 type="button"
-                className="add-to-cart-button"
-                onClick={onAdd}
+                className={
+                    added
+                        ? "add-to-cart-button added"
+                        : "add-to-cart-button"
+                }
+                onClick={handleAdd}
                 disabled={!available}
             >
-                {available
-                    ? "Add to Cart"
-                    : "Unavailable"}
+                {!available
+                    ? "Unavailable"
+                    : added
+                        ? "✓ Added to Cart"
+                        : "Add to Cart"}
             </button>
         </div>
     );

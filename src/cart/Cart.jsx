@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+
 import { useCartStore } from "./cartStore";
+
 import formatCurrency from "../utils/formatCurrency";
 
 function Cart() {
@@ -41,7 +43,8 @@ function Cart() {
                 ? 0
                 : 100;
 
-    const total = subtotal + deliveryFee;
+    const total =
+        subtotal + deliveryFee;
 
     const estimatedTime =
         subtotal >= 1000
@@ -49,23 +52,57 @@ function Cart() {
             : "30–40 min";
 
     return (
-        <section className="checkout">
-            <h2>Your Cart</h2>
+        <section className="checkout cart-page">
+            <div className="cart-heading">
+                <div>
+                    <p className="section-eyebrow">
+                        Your selection
+                    </p>
+
+                    <h2>Your Cart</h2>
+                </div>
+
+                {items.length > 0 && (
+                    <span className="cart-item-count">
+                        {items.length}{" "}
+                        {items.length === 1
+                            ? "item"
+                            : "items"}
+                    </span>
+                )}
+            </div>
 
             {items.length === 0 ? (
-                <>
-                    <p>Your cart is empty.</p>
+                <div className="cart-empty">
+                    <div className="cart-empty-icon">
+                        🛒
+                    </div>
 
-                    <Link to="/menu">
+                    <h3>
+                        Your cart is empty
+                    </h3>
+
+                    <p>
+                        Add something delicious
+                        from our menu.
+                    </p>
+
+                    <Link
+                        className="cart-primary-link"
+                        to="/menu"
+                    >
                         Browse Menu
                     </Link>
-                </>
+                </div>
             ) : (
                 <>
-                    <ul>
-                        {items.map(function (item) {
+                    <ul className="cart-items">
+                        {items.map(function (
+                            item
+                        ) {
                             const quantity =
-                                item.quantity ?? 1;
+                                item.quantity ??
+                                1;
 
                             const itemTotal =
                                 item.price *
@@ -73,11 +110,14 @@ function Cart() {
 
                             return (
                                 <li
+                                    className="cart-item"
                                     key={item.id}
                                 >
-                                    <div>
+                                    <div className="cart-item-info">
                                         <strong>
-                                            {item.name}
+                                            {
+                                                item.name
+                                            }
                                         </strong>
 
                                         <p>
@@ -87,7 +127,7 @@ function Cart() {
                                             each
                                         </p>
 
-                                        <p>
+                                        <p className="cart-item-subtotal">
                                             Subtotal:{" "}
                                             {formatCurrency(
                                                 itemTotal
@@ -95,40 +135,50 @@ function Cart() {
                                         </p>
                                     </div>
 
-                                    <div>
+                                    <div className="cart-item-actions">
+                                        <div
+                                            className="quantity-control"
+                                            aria-label={`Quantity controls for ${item.name}`}
+                                        >
+                                            <button
+                                                type="button"
+                                                className="quantity-button"
+                                                onClick={function () {
+                                                    decreaseQuantity(
+                                                        item.id
+                                                    );
+                                                }}
+                                                aria-label={`Decrease ${item.name} quantity`}
+                                            >
+                                                −
+                                            </button>
+
+                                            <span
+                                                className="quantity-value"
+                                                aria-label={`${quantity} ${item.name} in cart`}
+                                            >
+                                                {
+                                                    quantity
+                                                }
+                                            </span>
+
+                                            <button
+                                                type="button"
+                                                className="quantity-button"
+                                                onClick={function () {
+                                                    increaseQuantity(
+                                                        item.id
+                                                    );
+                                                }}
+                                                aria-label={`Increase ${item.name} quantity`}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
                                         <button
                                             type="button"
-                                            onClick={function () {
-                                                decreaseQuantity(
-                                                    item.id
-                                                );
-                                            }}
-                                            aria-label={`Decrease ${item.name} quantity`}
-                                        >
-                                            −
-                                        </button>
-
-                                        <span
-                                            aria-label={`${quantity} ${item.name} in cart`}
-                                        >
-                                            {" "}
-                                            {quantity}{" "}
-                                        </span>
-
-                                        <button
-                                            type="button"
-                                            onClick={function () {
-                                                increaseQuantity(
-                                                    item.id
-                                                );
-                                            }}
-                                            aria-label={`Increase ${item.name} quantity`}
-                                        >
-                                            +
-                                        </button>
-
-                                        <button
-                                            type="button"
+                                            className="remove-cart-button"
                                             onClick={function () {
                                                 removeItem(
                                                     item.id
@@ -145,43 +195,70 @@ function Cart() {
                     </ul>
 
                     <div className="cart-summary">
-                        <p>
-                            Subtotal:{" "}
-                            {formatCurrency(subtotal)}
-                        </p>
+                        <div className="cart-summary-row">
+                            <span>
+                                Subtotal
+                            </span>
 
-                        <p>
-                            Delivery:{" "}
-                            {deliveryFee === 0
-                                ? "Free"
-                                : formatCurrency(
-                                    deliveryFee
+                            <strong>
+                                {formatCurrency(
+                                    subtotal
                                 )}
-                        </p>
+                            </strong>
+                        </div>
 
-                        <p>
-                            Estimated delivery:{" "}
-                            {estimatedTime}
-                        </p>
+                        <div className="cart-summary-row">
+                            <span>
+                                Delivery
+                            </span>
 
-                        <h3>
-                            Total:{" "}
-                            {formatCurrency(total)}
-                        </h3>
+                            <strong>
+                                {deliveryFee ===
+                                0
+                                    ? "Free"
+                                    : formatCurrency(
+                                        deliveryFee
+                                    )}
+                            </strong>
+                        </div>
+
+                        <div className="cart-summary-row">
+                            <span>
+                                Estimated delivery
+                            </span>
+
+                            <strong>
+                                {estimatedTime}
+                            </strong>
+                        </div>
+
+                        <div className="cart-total-row">
+                            <span>Total</span>
+
+                            <strong>
+                                {formatCurrency(
+                                    total
+                                )}
+                            </strong>
+                        </div>
                     </div>
 
-                    <button
-                        type="button"
-                        onClick={clear}
-                    >
-                        Clear Cart
-                    </button>
+                    <div className="cart-footer-actions">
+                        <button
+                            type="button"
+                            className="clear-cart-button"
+                            onClick={clear}
+                        >
+                            Clear Cart
+                        </button>
 
-                    <p>
-                        <Link to="/checkout">
-                            Proceed to Checkout
+                        <Link
+                            className="checkout-cart-button"
+                            to="/checkout"
+                        >
+                            Proceed to Checkout →
                         </Link>
-                    </p>
+                    </div>
                 </>
             )}
         </section>

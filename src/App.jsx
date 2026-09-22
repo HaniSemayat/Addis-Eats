@@ -30,6 +30,8 @@ import Dashboard from "./admin/Dashboard";
 import DishManager from "./admin/DishManager";
 import OrderManager from "./admin/OrderManager";
 
+import ScrollToTop from "./ScrollToTop";
+
 const Checkout = lazy(
     () => import("./checkout/Checkout")
 );
@@ -103,6 +105,7 @@ function App() {
         <ThemeProvider>
             <AuthProvider>
                 <BrowserRouter>
+                <ScrollToTop />
                     <Routes>
 
                         {/* Customer Routes */}
