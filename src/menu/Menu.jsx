@@ -8,7 +8,9 @@ import { useSearchParams } from "react-router-dom";
 
 import CategoryBar from "./CategoryBar";
 import DishList from "./DishList";
+import Skeleton from "../ui/Skeleton";
 import { useCartStore } from "../cart/cartStore";
+
 
 const STORAGE_KEY =
     "addis-eats-admin-dishes";
@@ -166,9 +168,10 @@ function Menu() {
 
     if (loading) {
         return (
-            <p className="status">
-                Loading the menu...
-            </p>
+             <div>
+                <h2>Full Menu</h2>
+                <Skeleton />
+            </div>
         );
     }
 
