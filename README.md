@@ -1,224 +1,367 @@
-# Day 34- Hardened Addis Eats
+# Addis Eats 🍽️
 
-A React-based Ethiopian food ordering application built as part of the IBT Fullstack Software Development & QA Engineering program.
+Addis Eats is a responsive food-ordering web application built with React.
 
-Addis Eats demonstrates modern React development through reusable components, state management, routing, forms, API-style data loading, authentication, error handling, lazy loading, accessibility, and performance profiling.
+The project simulates a modern food-ordering experience in Addis Ababa, allowing customers to browse dishes, search and filter the menu, manage a persistent shopping cart, place orders, save favorites, view order history, and see estimated delivery times.
 
-## 🚀 Features
+The application also includes an admin panel for managing dishes, dish availability, customer orders, and basic sales analytics.
 
-* Browse an Ethiopian-inspired food menu
+## Features
+
+### Customer Features
+
+* Browse a menu of 38 dishes
+* Search dishes instantly
 * Filter dishes by category
 * View individual dish details
-* Quick-view dish information in an accessible modal
-* Add and remove dishes from the cart
-* Persist cart data with Zustand
-* User authentication and protected checkout
-* Controlled checkout form with validation
-* Ethiopian phone number validation
-* Server-style order validation errors
-* Order receipt after successful checkout
-* Separate error boundaries for menu, cart, checkout, and receipt
-* Lazy-loaded checkout and receipt routes
-* Loading states with Suspense
-* Keyboard-accessible modal with:
+* Quick-view dishes
+* Add dishes to the cart
+* Increase and decrease item quantities
+* Remove items from the cart
+* Persistent cart using localStorage
+* Live cart badge count
+* Live ETB totals
+* Favorites / wishlist
+* Persistent favorites
+* Checkout form
+* Checkout validation
+* Special delivery instructions
+* Delivery fee calculation
+* Estimated delivery time
+* Order confirmation receipt
+* Order history
+* Reorder previous orders
+* Dark and light theme
+* Persistent theme preference
+* Skeleton loading states
+* Loading, empty, and error states
+* Responsive design
+* Keyboard accessibility
+* ETB currency formatting
 
-  * Escape-to-close
-  * Focus trapping
-  * Focus return
-  * Portal rendering with `createPortal`
-* Performance profiling with React DevTools
-* Targeted component optimization using `memo()` and `useCallback()`
-* Responsive layout
+### Dish Availability
 
-## 🛠️ Tech Stack
+Each dish has an availability status.
+
+Administrators can enable or disable dishes from the admin menu manager.
+
+When a dish is disabled:
+
+* It remains visible to customers
+* It is marked as unavailable
+* Customers cannot add it to the cart
+* Customers cannot order it
+
+### Admin Features
+
+* Protected admin login
+* Admin dashboard
+* Revenue overview
+* Total order count
+* Average order value
+* Top-selling dishes
+* Order-status statistics
+* Add dishes
+* Edit dishes
+* Delete dishes
+* Search admin menu items
+* Enable or disable dish availability
+* Persistent admin menu data
+* View customer orders
+* View order details
+* Update order status
+* Delete orders
+* Return to the customer application
+* Dark and light theme support
+
+## Routes
+
+### Customer Routes
+
+| Route        | Page           |
+| ------------ | -------------- |
+| `/`          | Home           |
+| `/menu`      | Full Menu      |
+| `/menu/:id`  | Dish Details   |
+| `/cart`      | Shopping Cart  |
+| `/checkout`  | Checkout       |
+| `/favorites` | Favorites      |
+| `/orders`    | Order History  |
+| `/login`     | Customer Login |
+| `/receipt`   | Order Receipt  |
+
+### Admin Routes
+
+| Route           | Page             |
+| --------------- | ---------------- |
+| `/admin/login`  | Admin Login      |
+| `/admin`        | Dashboard        |
+| `/admin/menu`   | Menu Management  |
+| `/admin/orders` | Order Management |
+
+## Technologies Used
 
 * React
 * React Router
-* Zustand
-* React Hook Form
 * JavaScript
-* HTML
-* CSS
+* Zustand
+* Zustand Persist Middleware
 * Vite
-* ESLint
-* Git & GitHub
+* CSS
+* localStorage
+* sessionStorage
 
-## 📚 React Concepts Demonstrated
-
-This project brings together concepts learned throughout the React module:
-
-### Components
-
-The application is divided into reusable components such as:
-
-* `Dish`
-* `DishItem`
-* `DishList`
-* `Card`
-* `CategoryBar`
-* `Modal`
-* `Field`
-
-### State
-
-React state is used for local UI behavior such as:
-
-* Form values
-* Form validation state
-* Modal visibility
-* Selected dishes
-* Loading and submission states
-
-Zustand manages shared cart state.
-
-### Routing
-
-React Router is used for:
-
-* Home
-* Menu
-* Dish details
-* Cart
-* Login
-* Checkout
-* Receipt
-* Not Found
-
-Protected routes are used for checkout.
-
-### Data Loading
-
-Menu data is loaded through a custom `useFetch` hook with loading and error states.
-
-### Forms
-
-The checkout demonstrates:
-
-* Controlled inputs
-* Field-level validation
-* Blur validation
-* Server-style validation errors
-* Accessible error messages
-* React Hook Form implementation
-
-### Error Boundaries
-
-Separate error boundaries protect different application regions.
-
-For example, a menu rendering error should not take down the cart or the rest of the application.
-
-A deliberate test error can be enabled in `Dish.jsx` to verify the menu error boundary.
-
-### Lazy Loading
-
-Checkout and receipt pages are lazy-loaded with React `lazy()` and displayed through `Suspense`.
-
-This allows those routes to be loaded only when needed.
-
-### Accessible Modal
-
-The dish Quick View uses `createPortal()` to render the modal outside the normal component DOM hierarchy.
-
-The modal supports:
-
-* `role="dialog"`
-* `aria-modal`
-* Accessible labeling
-* Escape-to-close
-* Focus trapping
-* Focus return
-* Closing by clicking the backdrop
-
-## 🛒 Cart
-
-The cart is managed with Zustand and persisted to local storage.
-
-Cart actions include:
-
-* Add item
-* Remove item
-* Clear cart
-
-The cart is shared between the menu, cart page, and checkout.
-
-## 💳 Checkout
-
-The checkout collects:
-
-* Name
-* TeleBirr phone number
-* Delivery area
-* Optional delivery notes
-
-Orders are submitted through the local order API simulation.
-
-A successful order produces a receipt containing the order information and items.
-
-## ⚡ Performance Profiling
-
-React DevTools Profiler was used to investigate rendering behavior.
-
-The measured `DishList` render during the Quick View interaction was:
-
-| Measurement         | Render time |
-| ------------------- | ----------: |
-| Before optimization |     19.5 ms |
-| After optimization  |      3.8 ms |
-
-The optimization extracted individual dishes into `DishItem` and used `memo()` together with stable `useCallback()` handlers.
-
-The measured result is specific to the profiling interaction and development environment.
-
-Further memoization was not added without profiling evidence.
-
-See [`PROFILE.md`](./PROFILE.md) for the complete measurement and optimization notes.
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
-src/
-├── api/
-│   └── orders.js
-├── auth/
-│   ├── AuthContext.jsx
-│   ├── RequireAuth.jsx
-│   └── useAuth.js
-├── cart/
-│   ├── Cart.jsx
-│   └── cartStore.js
-├── checkout/
-│   ├── Checkout.jsx
-│   ├── CheckoutHookForm.jsx
-│   ├── Field.jsx
-│   └── validate.js
-├── hooks/
-│   └── useFetch.js
-├── ui/
-│   └── Modal.jsx
-├── App.jsx
-├── Card.jsx
-├── CategoryBar.jsx
-├── Dish.jsx
-├── DishDetail.jsx
-├── DishItem.jsx
-├── DishList.jsx
-├── Home.jsx
-├── Layout.jsx
-├── Login.jsx
-├── Menu.jsx
-├── NotFound.jsx
-├── Receipt.jsx
-└── main.jsx
+Addis-Eats-React/
+│
+├── public/
+│   ├── dishes.json
+│   ├── favicon.svg
+│   └── icons.svg
+│
+├── src/
+│   │
+│   ├── admin/
+│   │   ├── AdminLayout.jsx
+│   │   ├── AdminLogin.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── DishForm.jsx
+│   │   ├── DishManager.jsx
+│   │   ├── OrderManager.jsx
+│   │   ├── RequireAdmin.jsx
+│   │   └── useAdminAuth.js
+│   │
+│   ├── api/
+│   │   └── orders.js
+│   │
+│   ├── auth/
+│   │   ├── AuthContext.jsx
+│   │   ├── RequireAuth.jsx
+│   │   └── useAuth.js
+│   │
+│   ├── cart/
+│   │   ├── Cart.jsx
+│   │   ├── CartBadge.jsx
+│   │   └── cartStore.js
+│   │
+│   ├── checkout/
+│   │   ├── Checkout.jsx
+│   │   ├── Field.jsx
+│   │   └── validate.jsx
+│   │
+│   ├── favorites/
+│   │   ├── Favorites.jsx
+│   │   └── favoriteStore.js
+│   │
+│   ├── hooks/
+│   │   └── useFetch.js
+│   │
+│   ├── menu/
+│   │   ├── CategoryBar.jsx
+│   │   ├── Dish.jsx
+│   │   ├── DishDetail.jsx
+│   │   ├── DishItem.jsx
+│   │   ├── DishList.jsx
+│   │   └── Menu.jsx
+│   │
+│   ├── orders/
+│   │   ├── Orders.jsx
+│   │   └── orderStore.js
+│   │
+│   ├── theme/
+│   │   ├── ThemeContext.jsx
+│   │   └── ThemeToggle.jsx
+│   │
+│   ├── ui/
+│   │   ├── Card.jsx
+│   │   ├── Modal.jsx
+│   │   └── Skeleton.jsx
+│   │
+│   ├── utils/
+│   │   ├── estimateDeliveryTime.js
+│   │   └── formatCurrency.js
+│   │
+│   ├── App.jsx
+│   ├── ErrorBoundary.jsx
+│   ├── Home.jsx
+│   ├── index.css
+│   ├── Layout.jsx
+│   ├── Login.jsx
+│   ├── main.jsx
+│   ├── NotFound.jsx
+│   ├── Receipt.jsx
+│   └── ScrollToTop.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── PROFILE.md
+├── README.md
+└── vite.config.js
 ```
 
-## ▶️ Run Locally
+## Menu Data
 
-Clone the repository and enter the project directory:
+The menu currently contains 38 dishes across several categories:
 
-```bash
-git clone <your-repository-url>
-cd day-34
+* Ethiopian
+* Pizza
+* Burgers
+* International
+* Breakfast
+* Drinks
+
+Each dish can contain information such as:
+
+* Name
+* Amharic name
+* Description
+* Ingredients
+* Price
+* Category
+* Fasting status
+* Spice level
+* Preparation time
+* Special status
+* Availability
+* Image
+
+Menu data is initially loaded from `public/dishes.json`.
+
+Administratively modified menu data is persisted in browser storage.
+
+## State Management
+
+Zustand is used for application state that needs to be shared across components.
+
+### Cart Store
+
+The cart store manages:
+
+* Cart items
+* Item quantities
+* Adding items
+* Increasing quantities
+* Decreasing quantities
+* Removing items
+* Clearing the cart
+* Persistent cart data
+
+### Order Store
+
+The order store manages:
+
+* Customer orders
+* Order history
+* Order status
+* Order updates
+* Reordering
+* Persistent order data
+
+### Favorites
+
+Favorites are managed with a dedicated Zustand store and persisted locally.
+
+### Theme
+
+The application uses a theme context to manage the current light/dark theme and a theme toggle for switching between them.
+
+## Authentication
+
+Customer authentication is handled through the authentication context and protected routes.
+
+Checkout is protected so that a customer must be signed in before completing an order.
+
+The admin section uses a separate admin authentication flow.
+
+## Loading, Empty, and Error States
+
+The application provides feedback for different application states, including:
+
+* Menu loading
+* Skeleton menu loading
+* Empty search results
+* Empty category results
+* Empty cart
+* Empty favorites
+* Empty order history
+* Menu loading errors
+* Invalid or unavailable content
+* Application/component errors through an error boundary
+
+## Accessibility
+
+Accessibility improvements include:
+
+* Skip-to-content navigation
+* Keyboard-operable controls
+* Visible focus states
+* Accessible navigation labels
+* Descriptive button labels
+* Keyboard-accessible modal dialogs
+* Tab and Shift+Tab focus handling
+* Escape-key modal closing
+* Responsive layouts for different screen sizes
+
+## Responsive Design
+
+The application is designed for desktop, tablet, and mobile screen sizes.
+
+Responsive styling covers:
+
+* Navigation
+* Menu cards
+* Search and category controls
+* Cart
+* Checkout
+* Favorites
+* Order history
+* Modals
+* Admin dashboard
+* Admin forms
+* Admin order management
+
+## Currency
+
+All prices and order totals are displayed in Ethiopian Birr (ETB).
+
+Currency formatting is handled through the reusable `formatCurrency` utility.
+
+## Delivery Estimation
+
+The application calculates an estimated delivery time using:
+
+* Dish preparation time
+* A delivery-time range
+
+The estimated delivery time is shown during checkout and stored with the order.
+
+## Admin Dashboard
+
+The admin dashboard provides an overview of order and sales data, including:
+
+* Total revenue
+* Number of orders
+* Average order value
+* Top-selling dishes
+* Order status counts
+
+## Admin Login
+
+For demonstration purposes, the admin panel currently uses:
+
+```text
+Username: admin
+Password: admin123
 ```
+
+This authentication system is intended for a frontend training project and is not production-grade authentication.
+
+## Running the Project
 
 Install dependencies:
 
@@ -232,57 +375,42 @@ Start the development server:
 npm run dev
 ```
 
-Then open the local URL provided by Vite.
-
-## 🔍 Available Commands
-
-Start development server:
-
-```bash
-npm run dev
-```
-
-Build the production application:
+Create a production build:
 
 ```bash
 npm run build
 ```
 
-Run ESLint:
+## Build Verification
+
+The project can be verified with:
 
 ```bash
-npm run lint
+npm run build
 ```
 
-## 🧪 Day 34 Hardening Checklist
+The production build currently completes successfully with Vite.
 
-The final Day 34 implementation includes:
+## Project Purpose
 
-* [x] Separate menu error boundary
-* [x] Separate cart error boundary
-* [x] Checkout error fallback
-* [x] Receipt error fallback
-* [x] Deliberate menu rendering error test
-* [x] Lazy-loaded checkout
-* [x] Lazy-loaded receipt
-* [x] Suspense loading fallback
-* [x] Error handling for failed lazy routes
-* [x] Performance profiling
-* [x] Measured optimization
-* [x] `createPortal` modal
-* [x] Escape-to-close
-* [x] Focus trapping
-* [x] Focus return
-* [x] Final production build verification
+Addis Eats was developed as part of the React / Next.js training module.
 
-## 🎓 Project Context
+The project demonstrates practical use of:
 
-**Program:** IBT College Canada / QIYAS Advanced Digital Skills Training
-**Track:** Fullstack Software Development & QA Engineering
-**Project:** Addis Eats
-**Module:** React & Next.js
-**Day:** 34 — Hardening Addis Eats
+* Component-based React development
+* React Router
+* Feature-based project organization
+* Shared state management
+* Zustand
+* Persistent browser storage
+* Context API
+* Form handling and validation
+* Conditional rendering
+* Loading and skeleton states
+* Empty and error states
+* Authentication and protected routes
+* Responsive UI development
+* Accessibility
+* Customer ordering workflows
+* Admin management workflows
 
----
-
-Built as a learning project while developing practical React and fullstack development skills.
