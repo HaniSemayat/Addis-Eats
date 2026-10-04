@@ -414,3 +414,6 @@ The project demonstrates practical use of:
 * Customer ordering workflows
 * Admin management workflows
 
+### Next work:
+[] Sign-in/Sign-out feature for user
+[] Deploy it
