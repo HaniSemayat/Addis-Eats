@@ -24,6 +24,7 @@ import Favorites from "./favorites/Favorites";
 import Orders from "./orders/Orders";
 import ThemeProvider from "./theme/ThemeContext";
 import Account from "./Account";
+import ToastProvider from "./ui/ToastContext";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
@@ -54,7 +55,6 @@ function MenuUnavailable() {
     return (
         <section>
             <h2>Menu unavailable</h2>
-
             <p>
                 We could not load the menu right now.
                 Please try again.
@@ -67,7 +67,6 @@ function CartUnavailable() {
     return (
         <section>
             <h2>Cart unavailable</h2>
-
             <p>
                 Something went wrong while loading
                 your cart.
@@ -80,7 +79,6 @@ function CheckoutUnavailable() {
     return (
         <section>
             <h2>Checkout unavailable</h2>
-
             <p>
                 Something went wrong while loading
                 checkout.
@@ -93,7 +91,6 @@ function ReceiptUnavailable() {
     return (
         <section>
             <h2>Receipt unavailable</h2>
-
             <p>
                 Something went wrong while loading
                 your receipt.
@@ -105,191 +102,189 @@ function ReceiptUnavailable() {
 function App() {
     return (
         <ThemeProvider>
-            <AuthProvider>
-                <BrowserRouter>
-                    <ScrollToTop />
+            <ToastProvider>
+                <AuthProvider>
+                    <BrowserRouter>
+                        <ScrollToTop />
 
-                    <Routes>
-
-                        {/* Customer Routes */}
-
-                        <Route
-                            path="/"
-                            element={<Layout />}
-                        >
-                            <Route
-                                index
-                                element={<Home />}
-                            />
+                        <Routes>
+                            {/* Customer Routes */}
 
                             <Route
-                                path="menu"
-                                element={
-                                    <ErrorBoundary
-                                        fallback={
-                                            <MenuUnavailable />
-                                        }
-                                    >
-                                        <Menu />
-                                    </ErrorBoundary>
-                                }
-                            />
+                                path="/"
+                                element={<Layout />}
+                            >
+                                <Route
+                                    index
+                                    element={<Home />}
+                                />
 
-                            <Route
-                                path="menu/:id"
-                                element={
-                                    <ErrorBoundary
-                                        fallback={
-                                            <MenuUnavailable />
-                                        }
-                                    >
-                                        <DishDetail />
-                                    </ErrorBoundary>
-                                }
-                            />
-
-                            <Route
-                                path="cart"
-                                element={
-                                    <ErrorBoundary
-                                        fallback={
-                                            <CartUnavailable />
-                                        }
-                                    >
-                                        <Cart />
-                                    </ErrorBoundary>
-                                }
-                            />
-
-                            <Route
-                                path="checkout"
-                                element={
-                                    <ErrorBoundary
-                                        fallback={
-                                            <CheckoutUnavailable />
-                                        }
-                                    >
-                                        <Suspense
+                                <Route
+                                    path="menu"
+                                    element={
+                                        <ErrorBoundary
                                             fallback={
-                                                <Skeleton />
+                                                <MenuUnavailable />
                                             }
                                         >
-                                            <RequireAuth>
-                                                <Checkout />
-                                            </RequireAuth>
-                                        </Suspense>
-                                    </ErrorBoundary>
-                                }
-                            />
+                                            <Menu />
+                                        </ErrorBoundary>
+                                    }
+                                />
 
-                            <Route
-                                path="receipt"
-                                element={
-                                    <ErrorBoundary
-                                        fallback={
-                                            <ReceiptUnavailable />
-                                        }
-                                    >
-                                        <Suspense
+                                <Route
+                                    path="menu/:id"
+                                    element={
+                                        <ErrorBoundary
                                             fallback={
-                                                <Skeleton />
+                                                <MenuUnavailable />
                                             }
                                         >
-                                            <Receipt />
-                                        </Suspense>
-                                    </ErrorBoundary>
-                                }
-                            />
+                                            <DishDetail />
+                                        </ErrorBoundary>
+                                    }
+                                />
+
+                                <Route
+                                    path="cart"
+                                    element={
+                                        <ErrorBoundary
+                                            fallback={
+                                                <CartUnavailable />
+                                            }
+                                        >
+                                            <Cart />
+                                        </ErrorBoundary>
+                                    }
+                                />
+
+                                <Route
+                                    path="checkout"
+                                    element={
+                                        <ErrorBoundary
+                                            fallback={
+                                                <CheckoutUnavailable />
+                                            }
+                                        >
+                                            <Suspense
+                                                fallback={
+                                                    <Skeleton />
+                                                }
+                                            >
+                                                <RequireAuth>
+                                                    <Checkout />
+                                                </RequireAuth>
+                                            </Suspense>
+                                        </ErrorBoundary>
+                                    }
+                                />
+
+                                <Route
+                                    path="receipt"
+                                    element={
+                                        <ErrorBoundary
+                                            fallback={
+                                                <ReceiptUnavailable />
+                                            }
+                                        >
+                                            <Suspense
+                                                fallback={
+                                                    <Skeleton />
+                                                }
+                                            >
+                                                <Receipt />
+                                            </Suspense>
+                                        </ErrorBoundary>
+                                    }
+                                />
+
+                                <Route
+                                    path="login"
+                                    element={
+                                        <Login />
+                                    }
+                                />
+
+                                <Route
+                                    path="register"
+                                    element={
+                                        <Register />
+                                    }
+                                />
+
+                                <Route
+                                    path="favorites"
+                                    element={
+                                        <Favorites />
+                                    }
+                                />
+
+                                <Route
+                                    path="orders"
+                                    element={
+                                        <Orders />
+                                    }
+                                />
+
+                                <Route
+                                    path="account"
+                                    element={
+                                        <Account />
+                                    }
+                                />
+
+                                <Route
+                                    path="*"
+                                    element={
+                                        <NotFound />
+                                    }
+                                />
+                            </Route>
+
+                            {/* Admin Login */}
 
                             <Route
-                                path="login"
+                                path="/admin/login"
                                 element={
-                                    <Login />
+                                    <AdminLogin />
                                 }
                             />
+
+                            {/* Protected Admin Routes */}
 
                             <Route
-                                path="register"
+                                path="/admin"
                                 element={
-                                    <Register />
+                                    <RequireAdmin>
+                                        <AdminLayout />
+                                    </RequireAdmin>
                                 }
-                            />
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <Dashboard />
+                                    }
+                                />
 
-                            <Route
-                                path="favorites"
-                                element={
-                                    <Favorites />
-                                }
-                            />
+                                <Route
+                                    path="menu"
+                                    element={
+                                        <DishManager />
+                                    }
+                                />
 
-                            <Route
-                                path="orders"
-                                element={
-                                    <Orders />
-                                }
-                            />
-
-                            <Route
-                                path="account"
-                                element={
-                                    <Account />
-                                }
-                            />
-
-                            <Route
-                                path="*"
-                                element={
-                                    <NotFound />
-                                }
-                            />
-                        </Route>
-
-
-                        {/* Admin Login */}
-
-                        <Route
-                            path="/admin/login"
-                            element={
-                                <AdminLogin />
-                            }
-                        />
-
-
-                        {/* Protected Admin Routes */}
-
-                        <Route
-                            path="/admin"
-                            element={
-                                <RequireAdmin>
-                                    <AdminLayout />
-                                </RequireAdmin>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <Dashboard />
-                                }
-                            />
-
-                            <Route
-                                path="menu"
-                                element={
-                                    <DishManager />
-                                }
-                            />
-
-                            <Route
-                                path="orders"
-                                element={
-                                    <OrderManager />
-                                }
-                            />
-                        </Route>
-
-                    </Routes>
-                </BrowserRouter>
-            </AuthProvider>
+                                <Route
+                                    path="orders"
+                                    element={
+                                        <OrderManager />
+                                    }
+                                />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </AuthProvider>
+            </ToastProvider>
         </ThemeProvider>
     );
 }
