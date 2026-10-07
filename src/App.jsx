@@ -1,4 +1,4 @@
-import {
+﻿import {
     lazy,
     Suspense
 } from "react";
@@ -23,6 +23,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import Favorites from "./favorites/Favorites";
 import Orders from "./orders/Orders";
 import ThemeProvider from "./theme/ThemeContext";
+import Account from "./Account";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
@@ -106,7 +107,8 @@ function App() {
         <ThemeProvider>
             <AuthProvider>
                 <BrowserRouter>
-                <ScrollToTop />
+                    <ScrollToTop />
+
                     <Routes>
 
                         {/* Customer Routes */}
@@ -228,6 +230,13 @@ function App() {
                             />
 
                             <Route
+                                path="account"
+                                element={
+                                    <Account />
+                                }
+                            />
+
+                            <Route
                                 path="*"
                                 element={
                                     <NotFound />
@@ -265,12 +274,16 @@ function App() {
 
                             <Route
                                 path="menu"
-                                element={<DishManager />}
+                                element={
+                                    <DishManager />
+                                }
                             />
 
                             <Route
                                 path="orders"
-                                element={<OrderManager />}
+                                element={
+                                    <OrderManager />
+                                }
                             />
                         </Route>
 
