@@ -1,12 +1,30 @@
-import {
+﻿import {
     NavLink,
-    Outlet
+    Outlet,
+    useNavigate
 } from "react-router-dom";
 
 import CartBadge from "./cart/CartBadge";
 import ThemeToggle from "./theme/ThemeToggle";
+import useAuth from "./auth/useAuth";
 
 function Layout() {
+    const {
+        user,
+        logout
+    } = useAuth();
+
+    const navigate = useNavigate();
+
+    const userInitial =
+        user?.name?.trim().charAt(0).toUpperCase();
+
+    function handleLogout() {
+        logout();
+
+        navigate("/");
+    }
+
     return (
         <>
             <a
@@ -62,6 +80,38 @@ function Layout() {
                         <ThemeToggle />
 
                         <CartBadge />
+
+                        {user ? (
+                            <div className="user-menu">
+                                <div
+                                    className="user-profile"
+                                    aria-label={`Signed in as ${user.name}`}
+                                >
+                                    <span className="user-avatar">
+                                        {userInitial}
+                                    </span>
+
+                                    <span className="user-greeting">
+                                        {user.name}
+                                    </span>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    className="logout-button"
+                                    onClick={handleLogout}
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            <NavLink
+                                to="/register"
+                                className="login-link"
+                            >
+                                Sign Up
+                            </NavLink>
+                        )}
                     </div>
                 </div>
             </header>

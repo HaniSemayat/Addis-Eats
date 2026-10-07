@@ -3554,3 +3554,90 @@ footer p {
         padding: 1.5rem;
     }
 }
+
+/* Customer Account */
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.user-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+}
+
+.user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.user-greeting {
+    color: var(--text);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.logout-button,
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 0.65rem;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.logout-button:hover,
+.login-link:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.logout-button:focus-visible,
+.login-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--focus);
+}
+
+@media (max-width: 760px) {
+    .user-menu {
+        gap: 0.4rem;
+    }
+
+    .user-greeting {
+        display: none;
+    }
+
+    .logout-button,
+    .login-link {
+        padding: 0.5rem 0.65rem;
+        font-size: 0.9rem;
+    }
+}
