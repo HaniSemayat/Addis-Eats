@@ -15,6 +15,7 @@ import Menu from "./menu/Menu";
 import DishDetail from "./menu/DishDetail";
 import Cart from "./cart/Cart";
 import Login from "./Login";
+import Register from "./Register";
 import NotFound from "./NotFound";
 import RequireAuth from "./auth/RequireAuth";
 import AuthProvider from "./auth/AuthContext";
@@ -202,6 +203,13 @@ function App() {
                                 path="login"
                                 element={
                                     <Login />
+                                }
+                            />
+
+                            <Route
+                                path="register"
+                                element={
+                                    <Register />
                                 }
                             />
 
