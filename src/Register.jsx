@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+    Link,
+    useLocation,
+    useNavigate
+} from "react-router-dom";
 import useAuth from "./auth/useAuth";
 
 function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] =
+        useState("");
     const [error, setError] = useState("");
 
     const { register } = useAuth();
@@ -51,85 +56,104 @@ function Register() {
     }
 
     return (
-        <section>
-            <h2>Create Account</h2>
+        <section className="auth-page">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <span className="auth-icon">
+                        🍽️
+                    </span>
 
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Name
+                    <h2>Create Account</h2>
 
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(event) =>
-                            setName(event.target.value)
-                        }
-                        placeholder="Your name"
-                        required
-                    />
-                </label>
-
-                <label>
-                    Email
-
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(event) =>
-                            setEmail(event.target.value)
-                        }
-                        placeholder="you@example.com"
-                        required
-                    />
-                </label>
-
-                <label>
-                    Password
-
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(event) =>
-                            setPassword(event.target.value)
-                        }
-                        placeholder="At least 6 characters"
-                        required
-                    />
-                </label>
-
-                <label>
-                    Confirm Password
-
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(event) =>
-                            setConfirmPassword(
-                                event.target.value
-                            )
-                        }
-                        placeholder="Enter your password again"
-                        required
-                    />
-                </label>
-
-                {error && (
-                    <p className="error">
-                        {error}
+                    <p>
+                        Join Addis Eats and start ordering.
                     </p>
-                )}
+                </div>
 
-                <button type="submit">
-                    Create Account
-                </button>
-            </form>
+                <form
+                    className="auth-form"
+                    onSubmit={handleSubmit}
+                >
+                    <label>
+                        Name
 
-            <p>
-                Already have an account?{" "}
-                <Link to="/login">
-                    Sign In
-                </Link>
-            </p>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(event) =>
+                                setName(event.target.value)
+                            }
+                            placeholder="Your name"
+                            autoComplete="name"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Email
+
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(event) =>
+                                setEmail(event.target.value)
+                            }
+                            placeholder="you@example.com"
+                            autoComplete="email"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Password
+
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(event) =>
+                                setPassword(event.target.value)
+                            }
+                            placeholder="At least 6 characters"
+                            autoComplete="new-password"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Confirm Password
+
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(event) =>
+                                setConfirmPassword(
+                                    event.target.value
+                                )
+                            }
+                            placeholder="Enter your password again"
+                            autoComplete="new-password"
+                            required
+                        />
+                    </label>
+
+                    {error && (
+                        <p className="error">
+                            {error}
+                        </p>
+                    )}
+
+                    <button type="submit">
+                        Create Account
+                    </button>
+                </form>
+
+                <p className="auth-switch">
+                    Already have an account?{" "}
+                    <Link to="/login">
+                        Sign In
+                    </Link>
+                </p>
+            </div>
         </section>
     );
 }

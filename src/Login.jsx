@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+    Link,
+    useLocation,
+    useNavigate
+} from "react-router-dom";
 import useAuth from "./auth/useAuth";
 
 function Login() {
-    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const { login } = useAuth();
 
@@ -13,17 +19,20 @@ function Login() {
     const from =
         location.state?.from?.pathname ?? "/menu";
 
-    const phoneIsValid =
-        /^(?:\+251|0)9\d{8}$/.test(phone);
-
     function handleSubmit(event) {
         event.preventDefault();
 
-        if (!phoneIsValid) {
+        setError("");
+
+        const result = login(
+            email.trim(),
+            password
+        );
+
+        if (!result.success) {
+            setError(result.message);
             return;
         }
-
-        login(phone);
 
         navigate(from, {
             replace: true
@@ -31,38 +40,74 @@ function Login() {
     }
 
     return (
-        <section>
-            <h2>Sign In</h2>
+        <section className="auth-page">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <span className="auth-icon">
+                        👋
+                    </span>
 
-            <form onSubmit={handleSubmit}>
-                <label>
-                    TeleBirr Phone
+                    <h2>Welcome Back</h2>
 
-                    <input
-                        type="tel"
-                        value={phone}
-                        onChange={(event) =>
-                            setPhone(event.target.value)
-                        }
-                        placeholder="0911223344"
-                        required
-                    />
-                </label>
+                    <p>
+                        Sign in to continue to Addis Eats.
+                    </p>
+                </div>
 
-                {!phoneIsValid &&
-                    phone !== "" && (
+                <form
+                    className="auth-form"
+                    onSubmit={handleSubmit}
+                >
+                    <label>
+                        Email
+
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(event) =>
+                                setEmail(event.target.value)
+                            }
+                            placeholder="you@example.com"
+                            autoComplete="email"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Password
+
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(event) =>
+                                setPassword(
+                                    event.target.value
+                                )
+                            }
+                            placeholder="Your password"
+                            autoComplete="current-password"
+                            required
+                        />
+                    </label>
+
+                    {error && (
                         <p className="error">
-                            Enter a valid TeleBirr number.
+                            {error}
                         </p>
                     )}
 
-                <button
-                    type="submit"
-                    disabled={!phoneIsValid}
-                >
-                    Sign In
-                </button>
-            </form>
+                    <button type="submit">
+                        Sign In
+                    </button>
+                </form>
+
+                <p className="auth-switch">
+                    Don't have an account?{" "}
+                    <Link to="/register">
+                        Create Account
+                    </Link>
+                </p>
+            </div>
         </section>
     );
 }
