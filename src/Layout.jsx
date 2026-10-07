@@ -1,4 +1,4 @@
-﻿import {
+import {
     NavLink,
     Outlet,
     useNavigate
@@ -114,10 +114,75 @@ function Layout() {
             </main>
 
             <footer className="site-footer">
-                <p>
-                    © 2026 Addis Eats. All
-                    rights reserved.
-                </p>
+                <div className="footer-inner">
+                    <div className="footer-brand">
+                        <h2>Addis Eats</h2>
+
+                        <p>
+                            Delicious food from
+                            Addis Ababa.
+                        </p>
+
+                        <p>
+                            Addis Ababa, Ethiopia
+                        </p>
+                    </div>
+
+                    <div className="footer-column">
+                        <h3>Explore</h3>
+
+                        <NavLink
+                            to="/"
+                            end
+                        >
+                            Home
+                        </NavLink>
+
+                        <NavLink to="/menu">
+                            Menu
+                        </NavLink>
+
+                        <NavLink to="/favorites">
+                            Favorites
+                        </NavLink>
+
+                        <NavLink to="/orders">
+                            Orders
+                        </NavLink>
+                    </div>
+
+                    <div className="footer-column">
+                        <h3>Your Order</h3>
+
+                        <NavLink to="/cart">
+                            Cart
+                        </NavLink>
+
+                        <NavLink to="/checkout">
+                            Checkout
+                        </NavLink>
+                    </div>
+
+                    <div className="footer-column">
+                        <h3>Management</h3>
+
+                        <NavLink to="/admin">
+                            Admin Panel
+                        </NavLink>
+                    </div>
+                </div>
+
+                <div className="footer-bottom">
+                    <p>
+                        © 2026 Addis Eats. All
+                        rights reserved.
+                    </p>
+
+                    <p>
+                        Built as a React food
+                        ordering project.
+                    </p>
+                </div>
             </footer>
         </>
     );
