@@ -1,4 +1,4 @@
-import {
+﻿import {
     Link,
     useNavigate
 } from "react-router-dom";
@@ -7,6 +7,25 @@ import { useOrderStore } from "./orderStore";
 import { useCartStore } from "../cart/cartStore";
 
 import formatCurrency from "../utils/formatCurrency";
+
+const orderSteps = [
+    {
+        status: "pending",
+        label: "Placed"
+    },
+    {
+        status: "preparing",
+        label: "Preparing"
+    },
+    {
+        status: "delivering",
+        label: "Delivering"
+    },
+    {
+        status: "delivered",
+        label: "Delivered"
+    }
+];
 
 function Orders() {
     const orders = useOrderStore(
@@ -47,6 +66,75 @@ function Orders() {
         return (
             labels[status] ||
             "Pending"
+        );
+    }
+
+    function getStatusIndex(status) {
+        const index =
+            orderSteps.findIndex(
+                function (step) {
+                    return (
+                        step.status ===
+                        status
+                    );
+                }
+            );
+
+        return index === -1 ? 0 : index;
+    }
+
+    function renderOrderTracker(status) {
+        const currentIndex =
+            getStatusIndex(status);
+
+        return (
+            <div
+                className="order-tracker"
+                aria-label={`Order status: ${getStatusLabel(
+                    status
+                )}`}
+            >
+                {orderSteps.map(
+                    function (step, index) {
+                        const isCompleted =
+                            index <
+                            currentIndex;
+
+                        const isCurrent =
+                            index ===
+                            currentIndex;
+
+                        return (
+                            <div
+                                className={`order-tracker-step ${
+                                    isCompleted
+                                        ? "completed"
+                                        : ""
+                                } ${
+                                    isCurrent
+                                        ? "current"
+                                        : ""
+                                }`}
+                                key={
+                                    step.status
+                                }
+                            >
+                                <div className="order-tracker-marker">
+                                    {isCompleted
+                                        ? "✓"
+                                        : index + 1}
+                                </div>
+
+                                <span>
+                                    {
+                                        step.label
+                                    }
+                                </span>
+                            </div>
+                        );
+                    }
+                )}
+            </div>
         );
     }
 
@@ -130,6 +218,10 @@ function Orders() {
                                             }
                                         </strong>
                                     </p>
+                                )}
+
+                                {renderOrderTracker(
+                                    status
                                 )}
 
                                 <ul className="order-items">

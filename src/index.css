@@ -3892,3 +3892,86 @@ footer p {
         width: calc(100vw - 1.5rem);
     }
 }
+
+/* Visual Order Tracking */
+
+.order-tracker {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 0.5rem 0;
+}
+
+.order-tracker::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: var(--border-strong);
+}
+
+.order-tracker-step {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 0.45rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.order-tracker-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.order-tracker-step.completed,
+.order-tracker-step.current {
+    color: var(--accent);
+}
+
+.order-tracker-step.completed .order-tracker-marker,
+.order-tracker-step.current .order-tracker-marker {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.order-tracker-step.current .order-tracker-marker {
+    box-shadow: 0 0 0 4px var(--focus);
+}
+
+@media (max-width: 600px) {
+    .order-tracker {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin: 1.25rem -0.25rem;
+    }
+
+    .order-tracker::before {
+        left: 12%;
+        right: 12%;
+    }
+
+    .order-tracker-step {
+        font-size: 0.68rem;
+    }
+
+    .order-tracker-marker {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
